@@ -8,13 +8,13 @@ public class AlunoModel extends PessoaModel {
     private Double iea;
     private Double ira;
     private Integer periodo;
-    private String isConcluinte;
+    private boolean isConcluinte;
 
     public AlunoModel() {}
 
-    public AlunoModel(int idPessoa, String login, String senha, String isAluno,
+    public AlunoModel(int idPessoa, String login, String senha, boolean isAluno,
                       int idAluno, String matricula, String nome,
-                      Double iea, Double ira, Integer periodo, String isConcluinte) {
+                      Double iea, Double ira, Integer periodo, boolean isConcluinte) {
         super(idPessoa, login, senha, isAluno); // chama o construtor de PessoaModel
         this.idAluno = idAluno;
         this.matricula = matricula;
@@ -43,7 +43,7 @@ public class AlunoModel extends PessoaModel {
     public Integer getPeriodo() { return periodo; }
     public void setPeriodo(Integer periodo) { this.periodo = periodo; }
 
-    public String getIsConcluinte() { return isConcluinte; }
-    public void setIsConcluinte(String isConcluinte) { this.isConcluinte = isConcluinte; }
+    public boolean getIsConcluinte() { return isConcluinte; }
+    public void setIsConcluinte(boolean isConcluinte) { this.isConcluinte = isConcluinte; }
 	
 }

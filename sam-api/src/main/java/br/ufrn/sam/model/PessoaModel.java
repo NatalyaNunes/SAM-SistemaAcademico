@@ -5,11 +5,11 @@ public class PessoaModel {
 	private int idPessoa;
     private String login;
     private String senha;
-    private String isAluno;
+    private boolean isAluno;
     
     public PessoaModel() {}
 
-    public PessoaModel(int idPessoa, String login, String senha, String isAluno) {
+    public PessoaModel(int idPessoa, String login, String senha, boolean isAluno) {
     	this.idPessoa = idPessoa;
         this.login = login;
         this.senha = senha;
@@ -25,6 +25,6 @@ public class PessoaModel {
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
     
-    public String getIsAluno() { return isAluno; }
-    public void setIsAluno(String isAluno) { this.isAluno = isAluno; }
+    public boolean getIsAluno() { return isAluno; }
+    public void setIsAluno(boolean isAluno) { this.isAluno = isAluno; }
 }
