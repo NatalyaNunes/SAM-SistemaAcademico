@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SAM</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom border-light">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <i class="bi bi-layers-fill me-2 fs-4"></i> SAM
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link px-3" href="#funcionalidades">Funcionalidades</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#sobre">Sobre o Projeto</a></li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="#" class="btn btn-outline-custom w-100">Entrar com SIGAA</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center justify-content-center text-center text-lg-start">
+                <div class="col-lg-6 mb-5 mb-lg-0 pe-lg-5">
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-semibold mb-3">
+                        UFRN • DIM0510 Processos de Software
+                    </span>
+                    <h1 class="hero-title mb-4">O fim da incerteza na hora da matrícula.</h1>
+                    <p class="hero-subtitle">
+                        Simule sua grade horária, preveja conflitos e acompanhe sua classificação em tempo real antes mesmo do período oficial começar.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+                        <a href="/login" class="btn btn-primary-custom text-decoration-none">
+                            <i class="bi bi-play-fill me-1"></i> Simular Minha Grade
+                        </a>
+                        <a href="#funcionalidades" class="btn btn-outline-custom text-decoration-none">
+                            Entender o Sistema
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <div class="bg-white rounded-4 shadow-lg border p-2" style="height: 400px; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Interface do Sistema" class="img-fluid rounded-3 opacity-75" style="object-fit: cover; width: 100%; height: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="funcionalidades" class="py-5 my-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold h1">Pensado para Discentes e Coordenação</h2>
+                <p class="text-muted">Diferente de sistemas administrativos, o SAM foca na transparência e previsão de cenários.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-calendar-week"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Simulador Interativo</h4>
+                        <p class="text-muted mb-0">Monte sua grade semanal de forma visual. O sistema identifica automaticamente choques de horário e impedimentos por pré-requisitos.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-trophy"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Ranking em Tempo Real</h4>
+                        <p class="text-muted mb-0">Processamento instantâneo do seu IRA e IEA. Saiba exatamente qual a sua posição classificatória em relação à capacidade da turma.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-pie-chart"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Gestão de Demanda</h4>
+                        <p class="text-muted mb-0">Painéis analíticos para a coordenação identificar turmas ociosas, gargalos de retenção e priorizar a alocação de alunos formandos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-primary text-white text-center">
+        <div class="container py-4">
+            <h2 class="fw-bold mb-3">Pronto para organizar seu próximo semestre?</h2>
+            <p class="mb-4 opacity-75">Faça login com suas credenciais institucionais e comece a planejar.</p>
+            <a href="/login" class="btn btn-light btn-lg fw-bold text-primary px-5 rounded-pill shadow-sm">
+                Acessar SAM
+            </a>
+        </div>
+    </section>
+
+    <footer id="sobre">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <h5 class="fw-bold text-white mb-1"><i class="bi bi-layers-fill me-2"></i>SAM</h5>
+                    <p class="mb-0 opacity-75">Sistema de Apoio à Matrícula</p>
+                    <small class="opacity-50">UFRN • Instituto Metrópole Digital (IMD)</small>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-1 fw-semibold text-white">Desenvolvido por:</p>
+                    <p class="mb-2 opacity-75 small">
+                        Bianca Bezerra, Bruna Lucena e Natálya Gabriele
+                    </p>
+                    <a href="https://github.com/NatalyaNunes/SAM-SistemaAcademico" target="_blank" class="btn btn-sm btn-outline-secondary rounded-circle ms-2" title="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
