@@ -3,7 +3,7 @@
     --primary-dark: #1d4ed8;
     --secondary: #f8fafc;
     --text-main: #0f172a;
-    --text-muted: #64748b;    
+    --text-muted: #64748b;
     --primary-light: #eff6ff;
     --bg-color: #f8fafc;
     --sidebar-bg: #ffffff;
@@ -84,15 +84,16 @@ body {
 }
 
 .sidebar .nav-link i {
-    color: inherit; 
+    color: inherit;
     transition: color 0.2s ease;
 }
 
 .sidebar .nav-link.text-danger {
-    color: #dc3545 !important; 
+    color: #dc3545 !important;
 }
+
 .sidebar .nav-link.text-danger:hover {
-    background-color: #fee2e2 !important; 
+    background-color: #fee2e2 !important;
     color: #b02a37 !important;
 }
 
@@ -156,6 +157,19 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s ease;
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 1.25rem 1.5rem;
+}
+
 /* Footer */
 footer {
     background-color: #0f172a;
@@ -171,4 +185,90 @@ footer a {
 
 footer a:hover {
     color: white;
+}
+
+/* Dashboard */
+
+.stat-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 10px 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.stat-box strong {
+    font-size: 1.2rem;
+}
+
+/* Grade Semanal */
+.table-grade {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table-grade th {
+    font-weight: 600;
+    color: var(--text-muted);
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+
+.table-grade td {
+    border-bottom: 1px dashed #e2e8f0;
+    vertical-align: middle;
+    padding: 10px 5px;
+}
+
+.table-grade tr:last-child td {
+    border-bottom: none;
+}
+
+/* Bloquinhos da Grade */
+.grade-item {
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-left: 4px solid;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.grade-blue {
+    background-color: #eff6ff;
+    color: #1e3a8a;
+    border-left-color: #3b82f6;
+}
+
+.grade-red {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border-left-color: #ef4444;
+}
+
+.grade-yellow {
+    background-color: #fefce8;
+    color: #854d0e;
+    border-left-color: #eab308;
+}
+
+/* Badges customizados */
+.badge-soft-success {
+    background-color: #dcfce7;
+    color: #166534;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.badge-soft-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.search-bar {
+    border-radius: 20px;
+    padding-left: 15px;
 }
