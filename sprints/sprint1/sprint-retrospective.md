@@ -5,6 +5,7 @@
 - Modelagem do banco de dados (#20)
 - US01 - Cadastro de Perfil Acadêmico (#9)
 - Início da prototipagem das telas do sistema
+- Diagrama de casos de uso
 
 ## O que foi bem
 - A estrutura do projeto foi organizada desde o início seguindo o padrão
@@ -12,6 +13,7 @@
 - A decisão de usar repositório em memória permitiu avançar no desenvolvimento
   sem depender do banco de dados, que ainda estava sendo modelado
 - A modelagem do banco ficou alinhada com as entidades já implementadas no código
+- A modalagem de casos de uso auxilia no desenvolvimento de funções e interfaces que seram desenvolvidas
 - A prototipagem iniciada permite antecipar decisões de interface antes do desenvolvimento
 
 ## O que pode melhorar
