@@ -10,4 +10,16 @@ public class RenderController {
     public String home(Model model) {
         return "pages/index";
     }
+    @GetMapping("/dashboardAluno")
+    public String dashboardAluno(Model model) {
+        return "pages/dashboardAluno";
+    }
+    @GetMapping("/ranking")
+    public String ranking(Model model) {
+        return "pages/ranking";
+    }
+    @GetMapping("/configuracoes")
+    public String configuracoes(Model model) {
+        return "pages/configuracoes";
+    }
 }
