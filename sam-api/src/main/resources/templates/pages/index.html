@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>SAM</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom border-light">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom border-light py-2">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/">
                 <i class="bi bi-layers-fill me-2 fs-4"></i> SAM
             </a>
-            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -26,7 +30,10 @@
                     <li class="nav-item"><a class="nav-link px-3" href="#funcionalidades">Funcionalidades</a></li>
                     <li class="nav-item"><a class="nav-link px-3" href="#sobre">Sobre o Projeto</a></li>
                     <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                        <a href="#" class="btn btn-outline-custom w-100">Entrar com SIGAA</a>
+                        <button type="button" class="btn btn-primary-custom" data-bs-toggle="modal"
+                            data-bs-target="#loginModal">
+                            Fazer Login
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -37,15 +44,17 @@
         <div class="container">
             <div class="row align-items-center justify-content-center text-center text-lg-start">
                 <div class="col-lg-6 mb-5 mb-lg-0 pe-lg-5">
-                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-semibold mb-3">
+                    <span
+                        class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-semibold mb-3">
                         UFRN • DIM0510 Processos de Software
                     </span>
                     <h1 class="hero-title mb-4">O fim da incerteza na hora da matrícula.</h1>
                     <p class="hero-subtitle">
-                        Simule sua grade horária, preveja conflitos e acompanhe sua classificação em tempo real antes mesmo do período oficial começar.
+                        Simule sua grade horária, preveja conflitos e acompanhe sua classificação em tempo real antes
+                        mesmo do período oficial começar.
                     </p>
                     <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
-                        <a href="/login" class="btn btn-primary-custom text-decoration-none">
+                        <a href="#loginModal" data-bs-toggle="modal" class="btn btn-primary-custom text-decoration-none">
                             <i class="bi bi-play-fill me-1"></i> Simular Minha Grade
                         </a>
                         <a href="#funcionalidades" class="btn btn-outline-custom">
@@ -55,8 +64,11 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative">
-                        <div class="bg-white rounded-4 shadow-lg border p-2" style="height: 400px; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Interface do Sistema" class="img-fluid rounded-3 opacity-75" style="object-fit: cover; width: 100%; height: 100%;">
+                        <div class="bg-white rounded-4 shadow-lg border p-2"
+                            style="height: 400px; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
+                                alt="Interface do Sistema" class="img-fluid rounded-3 opacity-75"
+                                style="object-fit: cover; width: 100%; height: 100%;">
                         </div>
                     </div>
                 </div>
@@ -68,7 +80,8 @@
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="fw-bold h1">Pensado para Discentes e Coordenação</h2>
-                <p class="text-muted">Diferente de sistemas administrativos, o SAM foca na transparência e previsão de cenários.</p>
+                <p class="text-muted">Diferente de sistemas administrativos, o SAM foca na transparência e previsão de
+                    cenários.</p>
             </div>
 
             <div class="row g-4">
@@ -78,7 +91,8 @@
                             <i class="bi bi-calendar-week"></i>
                         </div>
                         <h4 class="fw-bold mb-3">Simulador Interativo</h4>
-                        <p class="text-muted mb-0">Monte sua grade semanal de forma visual. O sistema identifica automaticamente choques de horário e impedimentos por pré-requisitos.</p>
+                        <p class="text-muted mb-0">Monte sua grade semanal de forma visual. O sistema identifica
+                            automaticamente choques de horário e impedimentos por pré-requisitos.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -87,7 +101,8 @@
                             <i class="bi bi-trophy"></i>
                         </div>
                         <h4 class="fw-bold mb-3">Ranking em Tempo Real</h4>
-                        <p class="text-muted mb-0">Processamento instantâneo do seu IRA e IEA. Saiba exatamente qual a sua posição classificatória em relação à capacidade da turma.</p>
+                        <p class="text-muted mb-0">Processamento instantâneo do seu IRA e IEA. Saiba exatamente qual a
+                            sua posição classificatória em relação à capacidade da turma.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -96,7 +111,8 @@
                             <i class="bi bi-pie-chart"></i>
                         </div>
                         <h4 class="fw-bold mb-3">Gestão de Demanda</h4>
-                        <p class="text-muted mb-0">Painéis analíticos para a coordenação identificar turmas ociosas, gargalos de retenção e priorizar a alocação de alunos formandos.</p>
+                        <p class="text-muted mb-0">Painéis analíticos para a coordenação identificar turmas ociosas,
+                            gargalos de retenção e priorizar a alocação de alunos formandos.</p>
                     </div>
                 </div>
             </div>
@@ -126,12 +142,193 @@
                     <p class="mb-2 opacity-75 small">
                         Bianca Bezerra, Bruna Lucena e Natálya Gabriele
                     </p>
-                    <a href="https://github.com/NatalyaNunes/SAM-SistemaAcademico" target="_blank" class="btn btn-sm btn-outline-secondary rounded-circle ms-2" title="GitHub">
+                    <a href="https://github.com/NatalyaNunes/SAM-SistemaAcademico" target="_blank"
+                        class="btn btn-sm btn-outline-secondary rounded-circle ms-2" title="GitHub">
                         <i class="bi bi-github"></i>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card">
+
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title w-100 text-center fw-bold" style="color: var(--text-main);"
+                        id="loginModalLabel">Bem-vindo de volta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+
+                <div class="modal-body p-4 p-md-5 pt-3">
+                    <p class="text-center mb-4" style="color: var(--text-muted);">Insira suas credenciais para acessar o
+                        sistema.</p>
+
+                    <form>
+                        <div class="mb-3">
+                            <label for="emailInput" class="form-label fw-semibold"
+                                style="color: var(--text-main);">E-mail</label>
+                            <input type="email" class="form-control form-control-custom" id="emailInput"
+                                placeholder="seu@email.com" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="passwordInput" class="form-label fw-semibold"
+                                style="color: var(--text-main);">Senha</label>
+                            <input type="password" class="form-control form-control-custom" id="passwordInput"
+                                placeholder="••••••••" required>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary-custom w-100">Entrar</button>
+                        </div>
+                        <div class="text-end mt-2">
+                            <a href="#cadastroAlunoModal" data-bs-toggle="modal" class="text-decoration-none small"
+                                style="color: var(--primary); font-weight: 600;">Ainda não tem uma conta? Cadastre-se
+                                aqui!</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cadastroAlunoModal" tabindex="-1" aria-labelledby="cadastroAlunoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content card border-0">
+
+                <div class="modal-header border-0 pb-0 pt-4 px-4 px-md-5 position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0 mt-4 me-4"
+                        data-bs-dismiss="modal" aria-label="Fechar"></button>
+
+                    <div class="w-100 text-center">
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="bi bi-person-plus-fill"></i>
+                        </div>
+                        <h4 class="fw-bold" style="color: var(--text-main);" id="cadastroAlunoModalLabel">Cadastrar Novo
+                            Aluno</h4>
+                        <p class="mb-0" style="color: var(--text-muted);">Preencha as informações acadêmicas e de acesso
+                            do aluno.</p>
+                    </div>
+                </div>
+
+                <div class="modal-body p-4 p-md-5 pt-4">
+                    <form>
+                        <div class="mb-4">
+                            <label for="nomeAluno" class="form-label fw-semibold" style="color: var(--text-main);">Nome
+                                Completo</label>
+                            <input type="text" class="form-control form-control-custom" id="nomeAluno"
+                                placeholder="Ex: João da Silva" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="matricula" class="form-label fw-semibold"
+                                    style="color: var(--text-main);">Matrícula</label>
+                                <input type="text" class="form-control form-control-custom" id="matricula"
+                                    placeholder="Ex: 20240012345" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="emailInstitucional" class="form-label fw-semibold"
+                                    style="color: var(--text-main);">E-mail Institucional</label>
+                                <input type="email" class="form-control form-control-custom" id="emailInstitucional"
+                                    placeholder="aluno@instituicao.edu.br" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="curso" class="form-label fw-semibold"
+                                    style="color: var(--text-main);">Curso</label>
+                                <select class="form-select form-control-custom" id="curso" required>
+                                    <option value="" selected disabled>Selecione o curso...</option>
+                                    <option value="BTI">Bacharelado em Tecnologia da Informação (BTI)</option>
+                                    <option value="ENG_COMP">Engenharia de Computação</option>
+                                    <option value="CIENCIA_COMP">Ciência da Computação</option>
+                                    <option value="SISTEMAS">Sistemas de Informação</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="periodo" class="form-label fw-semibold"
+                                    style="color: var(--text-main);">Período Atual</label>
+                                <input type="text" class="form-control form-control-custom" id="periodo"
+                                    placeholder="5°" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="ira" class="form-label fw-semibold"
+                                    style="color: var(--text-main);">IRA</label>
+                                <input type="text" class="form-control form-control-custom" id="ira"
+                                    placeholder="Ex: 8.5" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="iea" class="form-label fw-semibold"
+                                    style="color: var(--text-main);">IEA</label>
+                                <input type="text" class="form-control form-control-custom" id="iea"
+                                    placeholder="Ex: 8.5" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label fw-semibold d-block" style="color: var(--text-main);">É
+                                    concluinte?</label>
+
+                                <div class="mt-2 d-flex gap-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="is_concluinte"
+                                            id="concluinte_sim" value="sim" required>
+                                        <label class="form-check-label" for="concluinte_sim"
+                                            style="color: var(--text-main);">
+                                            Sim
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="is_concluinte"
+                                            id="concluinte_nao" value="nao" required>
+                                        <label class="form-check-label" for="concluinte_nao"
+                                            style="color: var(--text-main);">
+                                            Não
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="senhaProvisoria" class="form-label fw-semibold"
+                                    style="color: var(--text-main);">Senha Provisória</label>
+                                <input type="password" class="form-control form-control-custom" id="senhaProvisoria"
+                                    placeholder="••••••••" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="confirmaSenha" class="form-label fw-semibold"
+                                    style="color: var(--text-main);">Confirmar Senha</label>
+                                <input type="password" class="form-control form-control-custom" id="confirmaSenha"
+                                    placeholder="••••••••" required>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-3 mt-2 pt-4 border-top">
+                            <button type="button" class="btn btn-outline-custom"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary-custom">Salvar Cadastro</button>
+                        </div>
+                    </form>
+                    <div class="text-end mt-2">
+                        <a href="#loginModal" data-bs-toggle="modal" class="text-decoration-none small"
+                            style="color: var(--primary); font-weight: 600;">Já possui conta? Faça login aqui!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>
