@@ -1,0 +1,41 @@
+<div th:replace="~{layout :: modelo('Turmas', 'turmas', 'ALUNO', ~{::section})}">
+    <section>
+        <header class="my-5">
+            <h1 class="fw-bold h3 mb-1">Explorar Oferta Acadêmica</h1>
+            <p class="text-muted">Encontre disciplinas e simule sua grade ideal para o próximo semestre.</p>
+        </header>
+
+        <div class="filter-section mb-5 shadow-sm">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label small fw-bold text-muted">Pesquisar Disciplina</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0"><i
+                                class="bi bi-search text-muted"></i></span>
+                        <input type="text" class="form-control border-start-0"
+                            placeholder="Nome ou código (ex: DIM0510)">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label small fw-bold text-muted">Turno</label>
+                    <select class="form-select">
+                        <option selected>Todos os turnos</option>
+                        <option>Manhã</option>
+                        <option>Tarde</option>
+                        <option>Noite</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label small fw-bold text-muted">Professor</label>
+                    <input type="text" class="form-control" placeholder="Filtrar por docente...">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary w-100 fw-bold py-2 shadow-sm">Filtrar</button>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div th:replace="~{fragment/cardTurma :: cardTurma}"></div>
+        </div>
+    </section>
+</div>

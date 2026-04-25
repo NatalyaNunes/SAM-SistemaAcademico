@@ -1,0 +1,12 @@
+<div th:replace="~{layout :: modelo('Ranking', 'ranking', 'ALUNO', ~{::section})}">
+    <section>
+        <header class="mb-5">
+            <h1 class="fw-bold h3 mb-1">Classificação em Tempo Real</h1>
+            <p class="text-muted">Acompanhe sua posição baseada nos índices acadêmicos atuais.</p>
+        </header>
+
+        <div class="row g-4">
+            <div th:replace="~{fragment/cardRanking :: cardRanking}"></div>
+        </div>
+    </section>
+</div>
