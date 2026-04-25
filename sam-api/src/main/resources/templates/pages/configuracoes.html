@@ -1,6 +1,108 @@
 <div th:replace="~{layout :: modelo('Configurações', 'grade', 'ALUNO', ~{::section})}">
     <section>
-        <h2>Seu Ranking Acadêmico</h2>
-        <p>Conteúdo da dashboard aqui...</p>
-    </section>
+
+        <div class="mb-4">
+            <h3 class="fw-bold" style="color: var(--text-main);">Configurações</h3>
+            <p style="color: var(--text-muted);">Gerencie suas informações pessoais, segurança e preferências do
+                SAM.</p>
+        </div>
+
+        <div class="row align-items-start">
+            <div>
+                <div class="tab-content" id="v-pills-tabContent">
+
+                    <div class="tab-pane fade show active" id="v-pills-perfil" role="tabpanel"
+                        aria-labelledby="v-pills-perfil-tab" tabindex="0">
+                        <div class="card border-0">
+                            <div class="card-header border-0 pb-0 pt-4 px-4">
+                                <h5 class="fw-bold" style="color: var(--text-main);">Informações Pessoais</h5>
+                            </div>
+                            <div class="card-body p-4">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label class="form-label fw-semibold" style="color: var(--text-main);">Nome
+                                                Completo</label>
+                                            <input type="text" class="form-control form-control-custom"
+                                                value="Natálya Gabriele Nunes" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-semibold"
+                                                style="color: var(--text-main);">Matrícula <span
+                                                    class="text-muted fw-normal">(Não editável)</span></label>
+                                            <input type="text" class="form-control form-control-custom"
+                                                value="20250012345" disabled>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label fw-semibold"
+                                                style="color: var(--text-main);">Curso</label>
+                                            <input type="text" class="form-control form-control-custom"
+                                                value="Bacharelado em Tecnologia da Informação" disabled>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label fw-semibold"
+                                                style="color: var(--text-main);">E-mail</label>
+                                            <input type="email" class="form-control form-control-custom"
+                                                value="natalya@ufrn.edu.br" required>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label fw-semibold"
+                                                style="color: var(--text-main);">Período Atual:</label>
+                                            <input type="text" class="form-control form-control-custom"
+                                                placeholder="5°">
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label fw-semibold"
+                                                style="color: var(--text-main);">IRA:</label>
+                                            <input type="text" class="form-control form-control-custom"
+                                                placeholder="8.5">
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label fw-semibold"
+                                                style="color: var(--text-main);">IEA:</label>
+                                            <input type="text" class="form-control form-control-custom"
+                                                placeholder="8.5">
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <label class="form-label fw-semibold d-block"
+                                                style="color: var(--text-main);">É
+                                                    concluinte?</label>
+
+                                                <div class="mt-2 d-flex gap-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="is_concluinte" id="concluinte_sim" value="sim"
+                                                            required>
+                                                        <label class="form-check-label" for="concluinte_sim"
+                                                            style="color: var(--text-main);">
+                                                            Sim
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="is_concluinte" id="concluinte_nao" value="nao"
+                                                            required>
+                                                        <label class="form-check-label" for="concluinte_nao"
+                                                            style="color: var(--text-main);">
+                                                            Não
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary-custom">Salvar
+                                            Alterações</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
 </div>
