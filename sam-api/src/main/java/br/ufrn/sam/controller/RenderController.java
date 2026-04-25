@@ -14,6 +14,10 @@ public class RenderController {
     public String dashboardAluno(Model model) {
         return "pages/dashboardAluno";
     }
+    @GetMapping("/turmas")
+    public String turmas(Model model) {
+        return "pages/turmas";
+    }
     @GetMapping("/ranking")
     public String ranking(Model model) {
         return "pages/ranking";
