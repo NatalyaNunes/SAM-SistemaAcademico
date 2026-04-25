@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class RenderController {
-    @GetMapping("/sam")
-    public String home(Model model) {
-        return "pages/index";
-    }
     @GetMapping("/dashboardAluno")
     public String dashboardAluno(Model model) {
         return "pages/dashboardAluno";

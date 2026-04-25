@@ -2,17 +2,29 @@
     <h4 class="text-center my-4 brand">
         <i class="bi bi-layers-fill me-2"></i>SAM
     </h4>
+    
     <div class="p-3" th:if="${role == 'ALUNO'}">
         <ul class="nav flex-column mb-4">
             <li class="nav-item">
-                <a class="nav-link active px-3 py-2" th:href="@{/dashboardAluno}"><i
-                        class="bi bi-grid-1x2 me-3"></i>Minha Grade</a>
+                <a class="nav-link px-3 py-2" 
+                   th:classappend="${menuAtivo == 'dashboardAluno'} ? 'active' : ''" 
+                   th:href="@{/dashboardAluno}">
+                    <i class="bi bi-grid-1x2 me-3"></i>Minha Grade
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link px-3 py-2" href="/turmas"><i class="bi bi-search me-3"></i>Buscar Turmas</a>
+                <a class="nav-link px-3 py-2" 
+                   th:classappend="${menuAtivo == 'turmas'} ? 'active' : ''" 
+                   th:href="@{/turmas}">
+                    <i class="bi bi-search me-3"></i>Buscar Turmas
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link px-3 py-2" href="/ranking"><i class="bi bi-bar-chart me-3"></i>Meus Rankings</a>
+                <a class="nav-link px-3 py-2" 
+                   th:classappend="${menuAtivo == 'ranking'} ? 'active' : ''" 
+                   th:href="@{/ranking}">
+                    <i class="bi bi-bar-chart me-3"></i>Meus Rankings
+                </a>
             </li>
         </ul>
     </div>
@@ -20,15 +32,25 @@
     <div class="p-3" th:if="${role == 'COORDENACAO'}">
         <ul class="nav flex-column mb-4">
             <li class="nav-item">
-                <a class="nav-link active px-3 py-2" th:href="@{/dashboardCoordenacao}"><i
-                        class="bi bi-grid-1x2 me-3"></i>Painel Geral</a>
+                <a class="nav-link px-3 py-2" 
+                   th:classappend="${menuAtivo == 'dashboardCoordenacao'} ? 'active' : ''" 
+                   th:href="@{/coordenacao/dashboardCoordenacao}">
+                    <i class="bi bi-grid-1x2 me-3"></i>Painel Geral
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link px-3 py-2" href="#"><i class="bi bi-people-fill me-3"></i>Relatório de Formandos</a>
+                <a class="nav-link px-3 py-2" 
+                   th:classappend="${menuAtivo == 'formacao'} ? 'active' : ''" 
+                   th:href="@{/coordenacao/formacao}">
+                    <i class="bi bi-people-fill me-3"></i>Relatório de Formandos
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link px-3 py-2" href="#"><i class="bi bi-exclamation-triangle-fill me-3"></i>Turmas
-                    Ociosas</a>
+                <a class="nav-link px-3 py-2" 
+                   th:classappend="${menuAtivo == 'turmasOciosas'} ? 'active' : ''" 
+                   th:href="@{/coordenacao/turmasOciosas}">
+                    <i class="bi bi-exclamation-triangle-fill me-3"></i>Turmas Ociosas
+                </a>
             </li>
         </ul>
     </div>
@@ -36,8 +58,11 @@
     <div class="p-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link px-3 py-2" th:href="@{/configuracoes}"><i
-                        class="bi bi-gear me-3"></i>Configurações</a>
+                <a class="nav-link px-3 py-2" 
+                   th:classappend="${menuAtivo == 'configuracoes'} ? 'active' : ''" 
+                   th:href="@{/configuracoes}">
+                    <i class="bi bi-gear me-3"></i>Configurações
+                </a>
             </li>
             <li class="nav-item mt-2">
                 <a class="nav-link px-3 py-2 text-danger" href="#logoutModal" data-bs-toggle="modal" role="button">
