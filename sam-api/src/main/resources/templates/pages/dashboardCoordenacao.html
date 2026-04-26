@@ -1,76 +1,78 @@
 <div th:replace="~{layout :: modelo('Dashboard', 'dashboardCoordenacao', 'COORDENACAO', ~{::section})}">
     <section>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 border-bottom">
-            <h1 class="h2">Painel de Retenção e Demanda</h1>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 border-0">
+            <div>
+                <h3 class="fw-bold" style="color: var(--text-main);">Painel de Retenção e Demanda</h3>
+                <p class="mb-0" style="color: var(--text-muted);">Visão geral da demanda de turmas e disciplinas ociosas.</p>
+            </div>
         </div>
+
         <div class="row mb-4">
             <div class="col-md-4 mb-3">
-                <div class="card shadow-sm card-metric h-100">
+                <div class="card border-0 h-100 p-2">
                     <div class="card-body">
-                        <h6 class="card-title text-muted">Total de Alunos Simulando</h6>
-                        <h2 class="mb-0">842</h2>
+                        <h6 class="fw-semibold" style="color: var(--text-muted);">Total de Alunos Simulando</h6>
+                        <h2 class="mb-0 fw-bold" style="color: var(--text-main);">842</h2>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <div class="card shadow-sm card-metric-danger h-100">
+                <div class="card border-0 h-100 p-2" style="border-left: 4px solid #ef4444 !important;">
                     <div class="card-body">
-                        <h6 class="card-title text-muted">Disciplinas com Gargalo</h6>
-                        <h2 class="mb-0">12</h2>
-                        <small class="text-danger">Demanda > Oferta</small>
+                        <h6 class="fw-semibold" style="color: var(--text-muted);">Disciplinas com Gargalo</h6>
+                        <h2 class="mb-0 fw-bold text-danger">12</h2>
+                        <small class="text-danger fw-semibold">Demanda > Oferta</small>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <div class="card shadow-sm card-metric-warning h-100">
+                <div class="card border-0 h-100 p-2" style="border-left: 4px solid #eab308 !important;">
                     <div class="card-body">
-                        <h6 class="card-title text-muted">Turmas Ociosas</h6>
-                        <h2 class="mb-0">5</h2>
-                        <small class="text-warning">Abaixo do quórum</small>
+                        <h6 class="fw-semibold" style="color: var(--text-muted);">Turmas Ociosas</h6>
+                        <h2 class="mb-0 fw-bold text-warning">5</h2>
+                        <small class="text-warning fw-semibold">Abaixo do quórum</small>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card shadow-sm">
-            <div class="card-header bg-white py-3">
-                <h5 class="mb-0">Fila de Espera por Componente Curricular</h5>
+
+        <div class="card border-0">
+            <div class="card-header border-0 pb-3 pt-4 px-4 border-bottom">
+                <h5 class="fw-bold mb-0" style="color: var(--text-main);">Fila de Espera por Componente Curricular</h5>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped mb-0">
-                        <thead>
+                    <table class="table mb-0 custom-table">
+                        <thead style="background-color: var(--secondary);">
                             <tr>
-                                <th>Código</th>
-                                <th>Disciplina</th>
-                                <th>Vagas Ofertadas</th>
-                                <th>Interessados</th>
-                                <th>Excedente</th>
+                                <th class="text-muted fw-semibold border-0 px-4 py-3">Código</th>
+                                <th class="text-muted fw-semibold border-0 py-3">Disciplina</th>
+                                <th class="text-muted fw-semibold border-0 py-3 text-center">Vagas Ofertadas</th>
+                                <th class="text-muted fw-semibold border-0 py-3 text-center">Interessados</th>
+                                <th class="text-muted fw-semibold border-0 py-3 text-center">Excedente</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>DIM0510</td>
-                                <td>Processos de Software</td>
-                                <td>40</td>
-                                <td class="text-danger fw-bold">65</td>
-                                <td>+25</td>
-                                <td><span class="badge bg-danger">Abrir nova turma</span></td>
+                                <td class="px-4 py-3 fw-bold align-middle" style="color: var(--text-main);">DIM0510</td>
+                                <td class="py-3 align-middle fw-medium" style="color: var(--text-muted);">Processos de Software</td>
+                                <td class="py-3 align-middle text-center" style="color: var(--text-main);">40</td>
+                                <td class="py-3 align-middle text-center text-danger fw-bold">65</td>
+                                <td class="py-3 align-middle text-center fw-bold" style="color: var(--text-main);">+25</td>
                             </tr>
                             <tr>
-                                <td>DIM0120</td>
-                                <td>Banco de Dados I</td>
-                                <td>50</td>
-                                <td class="text-danger fw-bold">82</td>
-                                <td>+32</td>
-                                <td><span class="badge bg-danger">Abrir nova turma</span></td>
+                                <td class="px-4 py-3 fw-bold align-middle" style="color: var(--text-main);">DIM0120</td>
+                                <td class="py-3 align-middle fw-medium" style="color: var(--text-muted);">Banco de Dados I</td>
+                                <td class="py-3 align-middle text-center" style="color: var(--text-main);">50</td>
+                                <td class="py-3 align-middle text-center text-danger fw-bold">82</td>
+                                <td class="py-3 align-middle text-center fw-bold" style="color: var(--text-main);">+32</td>
                             </tr>
                             <tr>
-                                <td>DIM0001</td>
-                                <td>Introdução à Programação</td>
-                                <td>90</td>
-                                <td class="text-warning fw-bold">100</td>
-                                <td>+10</td>
-                                <td><span class="badge bg-warning">Ampliar capacidade</span></td>
+                                <td class="px-4 py-3 fw-bold align-middle" style="color: var(--text-main);">DIM0001</td>
+                                <td class="py-3 align-middle fw-medium" style="color: var(--text-muted);">Introdução à Programação</td>
+                                <td class="py-3 align-middle text-center" style="color: var(--text-main);">90</td>
+                                <td class="py-3 align-middle text-center text-warning fw-bold">100</td>
+                                <td class="py-3 align-middle text-center fw-bold" style="color: var(--text-main);">+10</td>
                             </tr>
                         </tbody>
                     </table>
