@@ -3,8 +3,8 @@
         <i class="bi bi-layers-fill me-2"></i>SAM
     </h4>
     
-    <div class="p-3" th:if="${role == 'ALUNO'}">
-        <ul class="nav flex-column mb-4">
+    <div class="pl-3" th:if="${role == 'ALUNO'}">
+        <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link px-3 py-2" 
                    th:classappend="${menuAtivo == 'dashboardAluno'} ? 'active' : ''" 
@@ -26,11 +26,18 @@
                     <i class="bi bi-bar-chart me-3"></i>Meus Rankings
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link px-3 py-2 mt-5" 
+                   th:classappend="${menuAtivo == 'configuracoes'} ? 'active' : ''" 
+                   th:href="@{/configuracoes}">
+                    <i class="bi bi-gear me-3"></i>Configurações
+                </a>
+            </li>
         </ul>
     </div>
 
-    <div class="p-3" th:if="${role == 'COORDENACAO'}">
-        <ul class="nav flex-column mb-4">
+    <div class="pl-3" th:if="${role == 'COORDENACAO'}">
+        <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link px-3 py-2" 
                    th:classappend="${menuAtivo == 'dashboardCoordenacao'} ? 'active' : ''" 
@@ -52,18 +59,18 @@
                     <i class="bi bi-exclamation-triangle-fill me-3"></i>Turmas Ociosas
                 </a>
             </li>
-        </ul>
-    </div>
-
-    <div class="p-3">
-        <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link px-3 py-2" 
-                   th:classappend="${menuAtivo == 'configuracoes'} ? 'active' : ''" 
-                   th:href="@{/configuracoes}">
+                <a class="nav-link px-3 py-2 mt-5" 
+                   th:classappend="${menuAtivo == 'configuracoesCoordenacao'} ? 'active' : ''" 
+                   th:href="@{/coordenacao/configuracoes}">
                     <i class="bi bi-gear me-3"></i>Configurações
                 </a>
             </li>
+        </ul>
+    </div>
+
+    <div class="pl-3">
+        <ul class="nav flex-column">
             <li class="nav-item mt-2">
                 <a class="nav-link px-3 py-2 text-danger" href="#logoutModal" data-bs-toggle="modal" role="button">
                     <i class="bi bi-box-arrow-left me-3"></i>Sair

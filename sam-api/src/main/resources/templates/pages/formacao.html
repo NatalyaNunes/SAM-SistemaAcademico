@@ -1,6 +1,60 @@
-<div th:replace="~{layout :: modelo('Formandos', 'formacao', 'COORDENACAO', ~{::section})}">
+<div th:replace="~{layout :: modelo('Relatório de Formandos', 'formacao', 'COORDENACAO', ~{::section})}">
     <section>
-        <h2> Acadêmico</h2>
-        <p>Conteúdo da dashboard aqui...</p>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 border-bottom">
+            <h1 class="h2" style="color: var(--text-main); font-weight: 700; letter-spacing: -0.5px;">Relatório de Formandos</h1>
+        </div>
+
+        <div class="card border-0" style="overflow: hidden;">
+            <div class="card-header bg-white py-3 border-0 border-bottom-0">
+                <h6 class="mb-0 fw-bold" style="color: var(--primary);">Discentes</h6>
+            </div>
+            
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table custom-table table-hover align-middle mb-0 border-0">
+                        <thead style="background-color: var(--secondary);">
+                            <tr>
+                                <th class="border-0 text-muted fw-semibold py-3 px-4">Nome / Matrícula</th>
+                                <th class="border-0 text-muted fw-semibold py-3">Disciplina Pretendida</th>
+                                <th class="border-0 text-muted fw-semibold text-center py-3">IRA</th>
+                                <th class="border-0 text-muted fw-semibold text-center py-3">Posição / Vagas</th>
+                                <th class="border-0 text-muted fw-semibold py-3">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-3">
+                                    <div class="fw-bold" style="color: var(--text-main);">Natálya Gabriele Azevedo</div>
+                                    <small class="text-muted">20240023849</small>
+                                </td>
+                                <td class="py-3 text-muted">DIM0510 - Processos de Software</td>
+                                <td class="text-center py-3 fw-medium" style="color: var(--text-main);">9.2</td>
+                                <td class="text-center py-3">
+                                    <span style="color: #ef4444; font-weight: 700;">45 / 40</span>
+                                </td>
+                                <td class="py-3">
+                                    <span class="badge-soft-danger d-inline-block">Fora das Vagas</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="px-4 py-3">
+                                    <div class="fw-bold" style="color: var(--text-main);">Bruna Lucena Costa</div>
+                                    <small class="text-muted">20240034898</small>
+                                </td>
+                                <td class="py-3 text-muted">DIM0611 - Estrutura de Dados II</td>
+                                <td class="text-center py-3 fw-medium" style="color: var(--text-main);">8.5</td>
+                                <td class="text-center py-3">
+                                    <span style="color: #166534; font-weight: 700;">12 / 40</span>
+                                </td>
+                                <td class="py-3">
+                                    <span class="badge-soft-success d-inline-block">Dentro das Vagas</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
