@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface DisciplinaRepository {
 	DisciplinaModel save(DisciplinaModel disciplina);
-	Optional<DisciplinaModel> findByCodigo(int codigo); //busca umsa disciplina pelo código
+	Optional<DisciplinaModel> findByCodigo(String codigo); //busca umsa disciplina pelo código
 	List<DisciplinaModel> findAll(); //retorna as disciplinas cadastradas
 }
