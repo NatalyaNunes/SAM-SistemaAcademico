@@ -33,8 +33,7 @@ public class PessoaModel {
     
     public PessoaModel() {}
 
-    public PessoaModel(int idPessoa, String login, String senha, boolean isAluno) {
-    	this.idPessoa = idPessoa;
+    public PessoaModel(String login, String senha, boolean isAluno) {
         this.login = login;
         this.senha = senha;
         this.isAluno = isAluno;
