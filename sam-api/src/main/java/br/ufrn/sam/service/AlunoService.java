@@ -1,7 +1,7 @@
 package br.ufrn.sam.service;
 
 import br.ufrn.sam.model.AlunoModel;
-import br.ufrn.sam.repository.AlunoRepository;
+import br.ufrn.sam.repository.JpaAlunoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,15 +10,13 @@ import java.util.NoSuchElementException;
 @Service
 public class AlunoService {
 
-    private final AlunoRepository alunoRepository;
+    private final JpaAlunoRepository alunoRepository;
 
-    // Spring coloca o repositório automaticamente aqui
-    public AlunoService(AlunoRepository alunoRepository) {
+    public AlunoService(JpaAlunoRepository alunoRepository) {
         this.alunoRepository = alunoRepository;
     }
 
     public AlunoModel cadastrar(AlunoModel aluno) {
-        // verifica se já existe um aluno com essa matrícula
         if (alunoRepository.findByMatricula(aluno.getMatricula()).isPresent()) {
             throw new IllegalArgumentException("Matrícula já cadastrada: " + aluno.getMatricula());
         }
@@ -26,7 +24,6 @@ public class AlunoService {
     }
 
     public AlunoModel buscarPorMatricula(String matricula) {
-        // lança exceção automaticamente se não encontrar
         return alunoRepository.findByMatricula(matricula)
                 .orElseThrow(() -> new NoSuchElementException("Aluno não encontrado: " + matricula));
     }

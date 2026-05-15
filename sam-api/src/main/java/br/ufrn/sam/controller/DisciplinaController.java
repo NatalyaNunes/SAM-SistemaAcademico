@@ -35,6 +35,6 @@ public class DisciplinaController {
     // GET /api/disciplinas → lista todas as disciplinas
     @GetMapping
     public ResponseEntity<List<DisciplinaModel>> listar() {
-        return ResponseEntity.ok(disciplinaService.listarTodos());
+        return ResponseEntity.ok(disciplinaService.listarTodas());
     }
 }

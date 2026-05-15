@@ -1,22 +1,44 @@
 package br.ufrn.sam.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "aluno")
 public class AlunoModel extends PessoaModel {
 
+   
     private int idAluno;
+
+    @Column(nullable = false, unique = true)
     private String matricula;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private Double iea;
+
+    @Column(nullable = false)
     private Double ira;
+
+    @Column(nullable = false)
     private Integer periodo;
-    private boolean isConcluinte;
+
+    @Column(nullable = false)
+    private Boolean isConcluinte;
 
     public AlunoModel() {}
 
-    public AlunoModel(int idPessoa, String login, String senha, boolean isAluno,
-                      int idAluno, String matricula, String nome,
-                      Double iea, Double ira, Integer periodo, boolean isConcluinte) {
-        super(idPessoa, login, senha, isAluno); // chama o construtor de PessoaModel
-        this.idAluno = idAluno;
+    public AlunoModel(String login, String senha, Boolean isAluno,
+                      String matricula, String nome,
+                      Double iea, Double ira,
+                      Integer periodo, Boolean isConcluinte) {
+        super(login, senha, isAluno);
         this.matricula = matricula;
         this.nome = nome;
         this.iea = iea;
@@ -43,7 +65,6 @@ public class AlunoModel extends PessoaModel {
     public Integer getPeriodo() { return periodo; }
     public void setPeriodo(Integer periodo) { this.periodo = periodo; }
 
-    public boolean getIsConcluinte() { return isConcluinte; }
-    public void setIsConcluinte(boolean isConcluinte) { this.isConcluinte = isConcluinte; }
-	
+    public Boolean getIsConcluinte() { return isConcluinte; }
+    public void setIsConcluinte(Boolean isConcluinte) { this.isConcluinte = isConcluinte; }
 }
