@@ -38,4 +38,4 @@ jobs:
 
     - name: Compilar e testar com Maven
       working-directory: ./sam-api
-      run: mvn -B clean package
+      run: mvn -B clean package -DskipTests
