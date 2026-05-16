@@ -25,4 +25,5 @@ jobs:
         cache: maven
 
     - name: Compilar e testar com Maven
+      working-directory: ./SAM-SistemaAcademico/sam-api
       run: mvn -B clean package
