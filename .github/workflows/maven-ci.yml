@@ -23,7 +23,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        cache-dependency-path: 'sam-api/pom.xml'
 
     - name: Compilar e testar com Maven
-      working-directory: ./SAM-SistemaAcademico/sam-api
+      working-directory: ./sam-api
       run: mvn -B clean package
