@@ -23,6 +23,9 @@ public class TurmaModel {
     @Column(nullable = false, length = 100)
     private String nome;
 
+    @Column(nullable = false, length = 30)
+    private String horario; 
+
     @ManyToOne
     @JoinColumn(name = "id_disciplina", nullable = false)
     private DisciplinaModel disciplina;
@@ -117,4 +120,8 @@ public class TurmaModel {
     public void setCapacidade(Integer capacidade) {
         this.capacidade = capacidade;
     }
+    
+    public String getHorario() { return horario; }
+    
+    public void setHorario(String horario) { this.horario = horario; }
 }

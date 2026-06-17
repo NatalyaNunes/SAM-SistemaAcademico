@@ -23,11 +23,10 @@
                     <div class="card-body p-4">
                         <h6 class="fw-bold mb-3">Buscar Turma</h6>
                         <div class="input-group mb-3 shadow-sm rounded-pill">
-                            <span class="input-group-text bg-white border-end-0 rounded-start-pill text-muted"><i
-                                    class="bi bi-search"></i></span>
-                            <input type="text"
-                                class="form-control border-start-0 rounded-end-pill search-bar shadow-none"
-                                placeholder="Qual disciplina?">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-pill text-muted">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" class="form-control border-start-0 rounded-end-pill search-bar shadow-none" placeholder="Qual disciplina?">
                         </div>
                     </div>
                 </div>
@@ -37,22 +36,30 @@
                         <h6 class="fw-bold mb-0">Meus Interesses</h6>
                     </div>
                     <div class="card-body p-4">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div>
-                                <span class="d-block fw-bold" style="font-size: 0.9rem;">Processos de Software</span>
-                                <small class="text-muted">Turma 02</small>
+                        <div th:each="turma, iterStat : ${turmasInteresse}">
+                            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="d-block fw-bold" style="font-size: 0.9rem;" th:text="${turma.disciplina.nome}">Nome da Disciplina</span>
+                                    <small class="text-muted" th:text="'Turma ' + ${turma.codigo}">Turma 01</small>
+                                </div>
+                                
+                                <!-- Em conflito -->
+                                <span th:if="${idsEmConflito.contains(turma.idTurma)}" class="badge bg-danger-soft text-danger">
+                                    <i class="bi bi-exclamation-triangle-fill"></i> Choque
+                                </span>
+                                
+                                <!-- Sem conflito -->
+                                <span th:unless="${idsEmConflito.contains(turma.idTurma)}" class="badge bg-success-soft text-success">
+                                    <i class="bi bi-check-circle-fill"></i> Ok
+                                </span>
                             </div>
-                            <span class="badge-soft-success">15º de 40</span>
+
+                            <hr th:if="${!iterStat.last}" class="text-muted opacity-25">
                         </div>
-
-                        <hr class="text-muted opacity-25">
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <span class="d-block fw-bold" style="font-size: 0.9rem;">Estrutura de Dados II</span>
-                                <small class="text-muted">Turma 01</small>
-                            </div>
-                            <span class="badge-soft-danger"><i class="bi bi-exclamation-triangle"></i> Choque</span>
+                        
+                        <div th:if="${#lists.isEmpty(turmasInteresse)}" class="text-muted text-center py-3">
+                            Nenhuma turma selecionada.
                         </div>
                     </div>
                 </div>
@@ -77,41 +84,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <!-- NOTA: Exemplo visual básico mantido. O preenchimento automático célula a célula 
+                                         geralmente requer uma função auxiliar (helper) para bater os horários dos turnos. -->
                                     <tr>
-                                        <td class="text-muted" style="font-size: 0.8rem; font-weight: 500;">
-                                            07:00<br>08:50</td>
+                                        <td class="text-muted" style="font-size: 0.8rem; font-weight: 500;">07:00<br>08:50</td>
                                         <td>
-                                            <div class="grade-item grade-blue">
-                                                DIM0510<br><span class="fw-normal opacity-75">Turma 01</span>
-                                            </div>
+                                            <div class="grade-item grade-blue">DIM0510<br><span class="fw-normal opacity-75">T01</span></div>
                                         </td>
                                         <td></td>
                                         <td>
-                                            <div class="grade-item grade-blue">
-                                                DIM0510<br><span class="fw-normal opacity-75">Turma 01</span>
-                                            </div>
+                                            <div class="grade-item grade-blue">DIM0510<br><span class="fw-normal opacity-75">T01</span></div>
                                         </td>
                                         <td></td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td class="text-muted" style="font-size: 0.8rem; font-weight: 500;">
-                                            08:50<br>10:40</td>
+                                        <td class="text-muted" style="font-size: 0.8rem; font-weight: 500;">08:50<br>10:40</td>
                                         <td>
-                                            <div class="grade-item grade-red">
-                                                IMD0012<br><span class="fw-normal opacity-75">Conflito!</span>
-                                            </div>
+                                            <div class="grade-item grade-red">IMD0012<br><span class="fw-normal opacity-75">Conflito!</span></div>
                                         </td>
                                         <td>
-                                            <div class="grade-item grade-yellow">
-                                                DIM0124<br><span class="fw-normal opacity-75">Turma 02</span>
-                                            </div>
+                                            <div class="grade-item grade-yellow">DIM0124<br><span class="fw-normal opacity-75">T02</span></div>
                                         </td>
                                         <td></td>
                                         <td>
-                                            <div class="grade-item grade-yellow">
-                                                DIM0124<br><span class="fw-normal opacity-75">Turma 02</span>
-                                            </div>
+                                            <div class="grade-item grade-yellow">DIM0124<br><span class="fw-normal opacity-75">T02</span></div>
                                         </td>
                                         <td></td>
                                     </tr>

@@ -10,10 +10,8 @@
                 <div class="col-md-4">
                     <label class="form-label small fw-bold text-muted">Pesquisar Disciplina</label>
                     <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0"><i
-                                class="bi bi-search text-muted"></i></span>
-                        <input type="text" class="form-control border-start-0"
-                            placeholder="Nome ou código (ex: DIM0510)">
+                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                        <input type="text" class="form-control border-start-0" placeholder="Nome ou código (ex: DIM0510)">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -34,8 +32,14 @@
                 </div>
             </div>
         </div>
+
         <div class="row g-4">
-            <div th:replace="~{fragment/cardTurma :: cardTurma}"></div>
+            <div th:each="turma : ${todasAsTurmas}" class="col-md-4">
+                <div th:replace="~{fragment/cardTurma :: cardTurma(turma=${turma})}"></div>
+            </div>
+            <div th:if="${#lists.isEmpty(todasAsTurmas)}" class="text-muted text-center py-5">
+                Nenhuma turma disponível na oferta deste semestre.
+            </div>
         </div>
     </section>
 </div>

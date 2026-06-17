@@ -1,33 +1,26 @@
-<div th:fragment="cardTurma">
-    <div class="col-md-6 col-xl-4">
-        <div class="card class-card h-100">
-            <div class="card-body p-4">
-                <div class="d-flex justify-content-between mb-3">
-                    <span class="tag-info">DIM0510</span>
-                    <span class="badge bg-success-subtle text-success small">65% Ocupada</span>
-                </div>
-                <h5 class="fw-bold mb-1">Processos de Software</h5>
-                <p class="text-muted small mb-4">
-                    <i class="bi bi-person-circle me-1"></i> Prof. André Silva
-                    <a href="#" class="ms-1 text-decoration-none text-primary" title="Ver histórico deste professor"><i
-                            class="bi bi-info-circle"></i></a>
-                </p>
-
-                <div class="d-flex align-items-center mb-4">
-                    <div class="bg-light p-2 rounded-3 me-3 text-center w-25">
-                        <small class="d-block fw-bold text-primary">24M12</small>
-                        <small class="text-muted" style="font-size: 0.65rem;">Horário</small>
-                    </div>
-                    <div>
-                        <small class="d-block text-muted">Vagas Totais: 40</small>
-                        <small class="d-block text-muted">Interessados: 26</small>
-                    </div>
-                </div>
-
-                <button class="btn btn-add w-100 py-2">
-                    <i class="bi bi-plus-lg me-2"></i> Adicionar à Simulação
-                </button>
+<div th:fragment="cardTurma(turma)" class="card h-100 shadow-sm border-0 class-card">
+    <div class="card-body p-4 d-flex flex-column justify-content-between">
+        <div>
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <span class="badge bg-light text-primary fw-bold" th:text="${turma.disciplina.codigo}">DIM0510</span>
+                <span class="text-muted small" th:text="'Turma ' + ${turma.codigo}">Turma 01</span>
             </div>
+            
+            <h5 class="card-title fw-bold mb-2 h6" th:text="${turma.disciplina.nome}">Estrutura de Dados I</h5>
+            <p class="card-text text-muted small mb-3">
+                <i class="bi bi-person me-1"></i> <span th:text="${turma.professor}">Docente Responsável</span>
+            </p>
+        </div>
+
+        <div>
+            <div class="d-flex align-items-center justify-content-between bg-light p-2 rounded mb-3">
+                <span class="small text-secondary"><i class="bi bi-clock me-1"></i> Horário</span>
+                <span class="small fw-bold text-dark" th:text="${turma.horario}">24M12</span>
+            </div>
+            
+            <button class="btn btn-outline-primary btn-sm w-100 rounded-pill fw-bold">
+                <i class="bi bi-plus-circle me-1"></i> Adicionar Interesse
+            </button>
         </div>
     </div>
 </div>
