@@ -62,9 +62,14 @@ public class InteresseService {
     public List<InteresseModel> listarPorTurma(String codigoTurma) {
         TurmaModel turma = turmaRepository.findByCodigo(codigoTurma)
                 .orElseThrow(() -> new NoSuchElementException("Turma não encontrada: " + codigoTurma));
-        return interesseRepository.findByTurmaIdTurma(turma.getIdTurma());
-    }
 
+        List<InteresseModel> interesses = interesseRepository.findByTurmaIdTurma(turma.getIdTurma());
+
+        interesses.sort(new InteresseRankingComparator());
+
+        return interesses;
+    }
+    
     public List<InteresseModel> listarTodos() {
         return interesseRepository.findAll();
     }

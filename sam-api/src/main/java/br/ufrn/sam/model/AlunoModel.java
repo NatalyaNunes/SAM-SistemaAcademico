@@ -111,7 +111,7 @@ public class AlunoModel extends PessoaModel {
     }
 
     /**
-     * Soma usada no critério de desempate do §2º, aplicável aos níveis I, III e IV.
+     * Soma usada no critério de desempate, aplicável aos níveis I, III e IV.
      * Retorna 0 se algum dos valores não estiver informado, para não quebrar o ranking.
      */
     public int getPontuacaoDesempateNivel() {
