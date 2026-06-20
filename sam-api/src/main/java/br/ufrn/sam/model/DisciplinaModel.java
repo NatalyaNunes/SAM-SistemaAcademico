@@ -23,20 +23,14 @@ public class DisciplinaModel {
 
     @Column(nullable = false)
     private Integer chTotal;
-    
-    //para saber se é uma disciplina de primeiro nivel da estrutura curricular do aluno (semestre)
-    @Column(nullable = false)
-    private Boolean primeiroNivel;
 
     public DisciplinaModel() {}
 
-    public DisciplinaModel(String codigo, String nome, Integer chTotal, boolean primeiroNivel) {
+    public DisciplinaModel(String codigo, String nome, Integer chTotal) {
         this.codigo = codigo;
         this.nome = nome;
         this.chTotal = chTotal;
-        this.primeiroNivel = primeiroNivel;
     }
-    
 
     public Integer getIdDisciplina() { return idDisciplina; }
     public void setIdDisciplina(Integer idDisciplina) { this.idDisciplina = idDisciplina; }
@@ -49,7 +43,4 @@ public class DisciplinaModel {
 
     public Integer getChTotal() { return chTotal; }
     public void setChTotal(Integer chTotal) { this.chTotal = chTotal; }
-    
-    public Boolean getPrimeiroNivel() { return primeiroNivel; }
-    public void setPrimeiroNivel(Boolean primeiroNivel) { this.primeiroNivel = primeiroNivel; }
 }
