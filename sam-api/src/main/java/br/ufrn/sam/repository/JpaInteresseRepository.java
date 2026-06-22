@@ -8,6 +8,10 @@ import java.util.List;
 
 @Repository
 public interface JpaInteresseRepository extends JpaRepository<InteresseModel, Integer> {
+
+    List<InteresseModel> findByAlunoMatricula(String matricula);
+
     List<InteresseModel> findByAlunoIdAluno(Integer idAluno);
+
     List<InteresseModel> findByTurmaIdTurma(Integer idTurma);
 }

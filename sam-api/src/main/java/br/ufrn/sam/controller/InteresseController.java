@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/interesses")
@@ -43,5 +44,15 @@ public class InteresseController {
     @GetMapping
     public ResponseEntity<List<InteresseModel>> listarTodos() {
         return ResponseEntity.ok(interesseService.listarTodos());
+    }
+
+    @GetMapping("/aluno/{matricula}/simular-conflito/{codigoTurma}")
+    public ResponseEntity<Map<String, Boolean>> checarConflito(
+            @PathVariable String matricula,
+            @PathVariable String codigoTurma) {
+
+        boolean temConflito = interesseService.simularConflitoGrade(matricula, codigoTurma);
+
+        return ResponseEntity.ok(java.util.Map.of("conflito", temConflito));
     }
 }

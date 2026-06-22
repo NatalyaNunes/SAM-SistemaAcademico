@@ -22,12 +22,21 @@ public class RenderController {
     }
 
     @GetMapping("/dashboardAluno")
-    public String dashboardAluno(Model model) {
-        List<TurmaModel> turmasInteresse = turmaService.listarTodas();
+    public String dashboardAluno(HttpSession session, Model model) {
+        PessoaModel usuarioLogado = (PessoaModel) session.getAttribute("usuarioLogado");
 
-        Set<Integer> idsEmConflito = turmaService.verificarConflitos(turmasInteresse);
+        if (usuarioLogado == null || !usuarioLogado.getIsAluno()) {
+            return "redirect:/"; // Se não tiver logado, manda pro login
+        }
 
-        model.addAttribute("turmasInteresse", turmasInteresse);
+        AlunoModel aluno = (AlunoModel) usuarioLogado;
+
+        List<TurmaModel> turmasDoAluno = turmaService.listarTurmasPorInteresseAluno(aluno.getMatricula());
+
+        Set<Integer> idsEmConflito = turmaService.verificarConflitos(turmasDoAluno);
+
+        model.addAttribute("aluno", aluno);
+        model.addAttribute("turmasInteresse", turmasDoAluno);
         model.addAttribute("idsEmConflito", idsEmConflito);
 
         return "pages/dashboardAluno";

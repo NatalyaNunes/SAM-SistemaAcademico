@@ -1,7 +1,9 @@
 package br.ufrn.sam.service;
 
 import br.ufrn.sam.model.TurmaModel;
+import br.ufrn.sam.model.InteresseModel;
 import br.ufrn.sam.repository.JpaTurmaRepository;
+import br.ufrn.sam.repository.JpaInteresseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,14 +11,17 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class TurmaService {
 
     private final JpaTurmaRepository turmaRepository;
+    private final JpaInteresseRepository interesseRepository;
 
-    public TurmaService(JpaTurmaRepository turmaRepository) {
+    public TurmaService(JpaTurmaRepository turmaRepository, JpaInteresseRepository interesseRepository) {
         this.turmaRepository = turmaRepository;
+        this.interesseRepository = interesseRepository;
     }
 
     public TurmaModel cadastrar(TurmaModel turma) {
@@ -35,6 +40,16 @@ public class TurmaService {
         return turmaRepository.findAll();
     }
 
+    public List<TurmaModel> listarTurmasPorInteresseAluno(String matricula) {
+        // 1. Busca todos os registros de interesse daquele aluno
+        List<InteresseModel> interesses = interesseRepository.findByAlunoMatricula(matricula);
+
+        // 2. Extrai e retorna apenas os objetos TurmaModel de dentro dos interesses
+        return interesses.stream()
+                .map(InteresseModel::getTurma)
+                .collect(Collectors.toList());
+    }
+
     public List<String> decomporHorario(String horario) {
         List<String> blocos = new ArrayList<>();
         if (horario == null || horario.trim().isEmpty()) {
@@ -42,7 +57,7 @@ public class TurmaService {
         }
 
         java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("(\\d+)([MTNmtn])(\\d+)").matcher(horario);
-        
+
         while (matcher.find()) {
             String dias = matcher.group(1);
             String turno = matcher.group(2).toUpperCase();
@@ -62,8 +77,9 @@ public class TurmaService {
         java.util.Map<String, Integer> mapaBlocos = new java.util.HashMap<>();
 
         for (TurmaModel turma : turmas) {
-            if (turma.getIdTurma() == null) continue; 
-            
+            if (turma.getIdTurma() == null)
+                continue;
+
             List<String> blocosDaTurma = decomporHorario(turma.getHorario());
 
             for (String bloco : blocosDaTurma) {
