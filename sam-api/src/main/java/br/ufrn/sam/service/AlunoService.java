@@ -17,9 +17,12 @@ public class AlunoService {
     }
 
     public AlunoModel cadastrar(AlunoModel aluno) {
-        if (alunoRepository.findByMatricula(aluno.getMatricula()).isPresent()) {
+        var existente = alunoRepository.findByMatricula(aluno.getMatricula());
+
+        if (existente.isPresent() && existente.get().getIdAluno() != aluno.getIdAluno()) {
             throw new IllegalArgumentException("Matrícula já cadastrada: " + aluno.getMatricula());
         }
+
         return alunoRepository.save(aluno);
     }
 

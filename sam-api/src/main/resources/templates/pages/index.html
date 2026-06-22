@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script th:src="@{/js/gestaoPerfil.js}"></script>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                 <div class="col-lg-6 mb-5 mb-lg-0 pe-lg-5">
                     <span
                         class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-semibold mb-3">
-                        UFRN • DIM0510 Processos de Software
+                        UFRN • Instituto Metrópole Digital (IMD)
                     </span>
                     <h1 class="hero-title mb-4">O fim da incerteza na hora da matrícula.</h1>
                     <p class="hero-subtitle">
@@ -123,7 +124,7 @@
         <div class="container py-4">
             <h2 class="fw-bold mb-3">Pronto para organizar seu próximo semestre?</h2>
             <p class="mb-4 opacity-75">Faça login com suas credenciais institucionais e comece a planejar.</p>
-            <a href="/login" class="btn btn-light btn-lg fw-bold text-primary px-5 rounded-pill shadow-sm">
+            <a href="#loginModal" class="btn btn-light btn-lg fw-bold text-primary px-5 rounded-pill shadow-sm" data-bs-toggle="modal">
                 Acessar SAM
             </a>
         </div>
@@ -164,7 +165,7 @@
                     <p class="text-center mb-4" style="color: var(--text-muted);">Insira suas credenciais para acessar o
                         sistema.</p>
 
-                    <form>
+                    <form id="formLogin">
                         <div class="mb-3">
                             <label for="emailInput" class="form-label fw-semibold"
                                 style="color: var(--text-main);">E-mail</label>
@@ -214,7 +215,7 @@
                 </div>
 
                 <div class="modal-body p-4 p-md-5 pt-4">
-                    <form>
+                    <form id="formCadastroAluno">
                         <div class="mb-4">
                             <label for="nomeAluno" class="form-label fw-semibold" style="color: var(--text-main);">Nome
                                 Completo</label>

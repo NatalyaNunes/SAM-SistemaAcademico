@@ -18,85 +18,86 @@
                                 <h5 class="fw-bold" style="color: var(--text-main);">Informações Pessoais</h5>
                             </div>
                             <div class="card-body p-4">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-12 mb-3">
-                                            <label class="form-label fw-semibold" style="color: var(--text-main);">Nome
-                                                Completo</label>
-                                            <input type="text" class="form-control form-control-custom"
-                                                value="Natálya Gabriele Nunes" required>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label fw-semibold"
-                                                style="color: var(--text-main);">Matrícula <span
-                                                    class="text-muted fw-normal">(Não editável)</span></label>
-                                            <input type="text" class="form-control form-control-custom"
-                                                value="20250012345" disabled>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label fw-semibold"
-                                                style="color: var(--text-main);">Curso</label>
-                                            <input type="text" class="form-control form-control-custom"
-                                                value="Bacharelado em Tecnologia da Informação" disabled>
-                                        </div>
-                                        <div class="col-md-6 mb-4">
-                                            <label class="form-label fw-semibold"
-                                                style="color: var(--text-main);">E-mail</label>
-                                            <input type="email" class="form-control form-control-custom"
-                                                value="natalya@ufrn.edu.br" required>
-                                        </div>
-                                        <div class="col-md-6 mb-4">
-                                            <label class="form-label fw-semibold"
-                                                style="color: var(--text-main);">Período Atual:</label>
-                                            <input type="text" class="form-control form-control-custom"
-                                                placeholder="5°">
-                                        </div>
-                                        <div class="col-md-6 mb-4">
-                                            <label class="form-label fw-semibold"
-                                                style="color: var(--text-main);">IRA:</label>
-                                            <input type="text" class="form-control form-control-custom"
-                                                placeholder="8.5">
-                                        </div>
-                                        <div class="col-md-6 mb-4">
-                                            <label class="form-label fw-semibold"
-                                                style="color: var(--text-main);">IEA:</label>
-                                            <input type="text" class="form-control form-control-custom"
-                                                placeholder="8.5">
-                                        </div>
-                                        <div class="col-md-6 mb-4">
-                                            <label class="form-label fw-semibold d-block"
-                                                style="color: var(--text-main);">É
-                                                    concluinte?</label>
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label fw-semibold" style="color: var(--text-main);">Nome
+                                            Completo</label>
+                                        <input type="text" class="form-control form-control-custom"
+                                            th:value="${aluno.nome}" id="nomeAluno" required>
+                                    </div>
 
-                                                <div class="mt-2 d-flex gap-4">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="is_concluinte" id="concluinte_sim" value="sim"
-                                                            required>
-                                                        <label class="form-check-label" for="concluinte_sim"
-                                                            style="color: var(--text-main);">
-                                                            Sim
-                                                        </label>
-                                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-semibold" style="color: var(--text-main);">Matrícula
+                                            <span class="text-muted fw-normal">(Não editável)</span></label>
+                                        <input type="text" class="form-control form-control-custom"
+                                            th:value="${aluno.matricula}" id="matricula" disabled>
+                                    </div>
 
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="is_concluinte" id="concluinte_nao" value="nao"
-                                                            required>
-                                                        <label class="form-check-label" for="concluinte_nao"
-                                                            style="color: var(--text-main);">
-                                                            Não
-                                                        </label>
-                                                    </div>
-                                                </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-semibold"
+                                            style="color: var(--text-main);">Curso</label>
+                                        <input type="text" class="form-control form-control-custom"
+                                            th:value="${aluno.curso}" id="curso" disabled>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label class="form-label fw-semibold"
+                                            style="color: var(--text-main);">E-mail</label>
+                                        <input type="email" class="form-control form-control-custom"
+                                            th:value="${aluno.login}" id="email" required>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label class="form-label fw-semibold" style="color: var(--text-main);">Período
+                                            Atual:</label>
+                                        <input type="text" class="form-control form-control-custom"
+                                            th:value="${aluno.periodo}" id="periodo">
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label class="form-label fw-semibold"
+                                            style="color: var(--text-main);">IRA:</label>
+                                        <input type="text" class="form-control form-control-custom"
+                                            th:value="${aluno.ira}" id="ira">
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label class="form-label fw-semibold"
+                                            style="color: var(--text-main);">IEA:</label>
+                                        <input type="text" class="form-control form-control-custom"
+                                            th:value="${aluno.iea}" id="iea">
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label class="form-label fw-semibold d-block" style="color: var(--text-main);">É
+                                            concluinte?</label>
+                                        <div class="mt-2 d-flex gap-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="is_concluinte"
+                                                    id="concluinte_sim" value="sim" th:checked="${aluno.isConcluinte}"
+                                                    required>
+                                                <label class="form-check-label" for="concluinte_sim"
+                                                    style="color: var(--text-main);">
+                                                    Sim
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="is_concluinte"
+                                                    id="concluinte_nao" value="nao" th:checked="${!aluno.isConcluinte}"
+                                                    required>
+                                                <label class="form-check-label" for="concluinte_nao"
+                                                    style="color: var(--text-main);">
+                                                    Não
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary-custom">Salvar
-                                            Alterações</button>
-                                    </div>
-                                </form>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" id="btnSalvarPerfil" class="btn btn-primary-custom">Salvar
+                                        Alterações</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -104,5 +105,47 @@
             </div>
         </div>
 </div>
+<script>
+    document.getElementById("btnSalvarPerfil").addEventListener("click", async function () {
+
+        try {
+            const iraInput = document.getElementById("ira").value;
+            const ieaInput = document.getElementById("iea").value;
+
+            const iraFormatado = iraInput ? iraInput.replace(',', '.') : 0;
+            const ieaFormatado = ieaInput ? ieaInput.replace(',', '.') : 0;
+
+            const isConcluinte = document.querySelector('input[name="is_concluinte"]:checked').value === "sim";
+
+            const payload = {
+                nome: document.getElementById("nomeAluno").value,
+                login: document.getElementById("email").value,
+                email: document.getElementById("email").value,
+                periodo: parseInt(document.getElementById("periodo").value || 0),
+                ira: parseFloat(iraFormatado),
+                iea: parseFloat(ieaFormatado),
+                isConcluinte: isConcluinte
+            };
+
+            console.log("📦 Pacote montado com sucesso:", payload);
+
+            const response = await fetch("/api/alunos/perfil", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.status === 200) {
+                alert("Perfil atualizado com sucesso!");
+                window.location.reload();
+            } else {
+                alert("Falha! O Java devolveu o erro: " + response.status);
+            }
+        } catch (error) {
+            alert("Erro no código da página. Veja o F12.");
+        }
+    });
+</script>
+</section>
 </section>
 </div>
