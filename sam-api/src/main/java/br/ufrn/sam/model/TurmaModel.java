@@ -8,23 +8,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "turma")
+@Table(name = "turma", uniqueConstraints = @UniqueConstraint(columnNames = { "id_disciplina", "ano", "semestre",
+        "numero" }))
 public class TurmaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idTurma;
 
-    @Column(nullable = false, unique = true, length = 10)
-    private String codigo;
-
-    @Column(nullable = false, length = 100)
-    private String nome;
+    @Column(nullable = false)
+    private Integer numero; // Substituiu o 'codigo' e o 'nome' (ex: 1, 2, 3...)
 
     @Column(nullable = false, length = 30)
-    private String horario; 
+    private String horario;
 
     @ManyToOne
     @JoinColumn(name = "id_disciplina", nullable = false)
@@ -43,13 +42,14 @@ public class TurmaModel {
     @Column(nullable = false)
     private Integer capacidade;
 
-    public TurmaModel() {}
+    public TurmaModel() {
+    }
 
-    public TurmaModel(String codigo, String nome, DisciplinaModel disciplina,
-                      ProfessorModel professor, Integer semestre, Integer ano,
-                      Integer capacidade) {
-        this.codigo = codigo;
-        this.nome = nome;
+    public TurmaModel(Integer numero, String horario, DisciplinaModel disciplina,
+            ProfessorModel professor, Integer semestre, Integer ano,
+            Integer capacidade) {
+        this.numero = numero;
+        this.horario = horario;
         this.disciplina = disciplina;
         this.professor = professor;
         this.semestre = semestre;
@@ -65,20 +65,20 @@ public class TurmaModel {
         this.idTurma = idTurma;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public Integer getNumero() {
+        return numero;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
 
-    public String getNome() {
-        return nome;
+    public String getHorario() {
+        return horario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
     public DisciplinaModel getDisciplina() {
@@ -120,8 +120,4 @@ public class TurmaModel {
     public void setCapacidade(Integer capacidade) {
         this.capacidade = capacidade;
     }
-    
-    public String getHorario() { return horario; }
-    
-    public void setHorario(String horario) { this.horario = horario; }
 }
