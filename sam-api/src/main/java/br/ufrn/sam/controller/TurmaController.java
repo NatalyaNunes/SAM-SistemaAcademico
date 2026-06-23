@@ -37,13 +37,14 @@ public class TurmaController {
     public ResponseEntity<List<TurmaModel>> listar() {
         return ResponseEntity.ok(turmaService.listarTodas());
     }
-    
-    // GET /api/turmas/com-ocupacao → lista todas as turmas com quantidade de interessados e percentual de ocupação
+
+    // GET /api/turmas/com-ocupacao → lista todas as turmas com quantidade de
+    // interessados e percentual de ocupação
     @GetMapping("/com-ocupacao")
     public ResponseEntity<List<TurmaComOcupacaoDTO>> listarComOcupacao() {
         return ResponseEntity.ok(turmaService.listarTodasComOcupacao());
     }
-    
+
     // GET /api/turmas/ociosas → lista turmas com ocupação <= 25%
     @GetMapping("/ociosas")
     public ResponseEntity<List<TurmaComOcupacaoDTO>> listarOciosas() {
@@ -54,5 +55,17 @@ public class TurmaController {
     @GetMapping("/ociosas/contagem")
     public ResponseEntity<Long> contarOciosas() {
         return ResponseEntity.ok(turmaService.contarTurmasOciosas());
+    }
+
+    @GetMapping("/filtrar")
+    public ResponseEntity<List<TurmaModel>> filtrarPorHorario(@RequestParam String horario) {
+        List<TurmaModel> turmas = turmaService.filtrarPorHorario(horario);
+        return ResponseEntity.ok(turmas);
+    }
+
+    @GetMapping("/filtrar-professor")
+    public ResponseEntity<List<TurmaModel>> filtrarPorProfessor(@RequestParam String nome) {
+        List<TurmaModel> turmas = turmaService.filtrarPorProfessor(nome);
+        return ResponseEntity.ok(turmas);
     }
 }

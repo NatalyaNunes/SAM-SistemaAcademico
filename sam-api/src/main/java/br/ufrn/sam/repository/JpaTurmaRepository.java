@@ -5,6 +5,7 @@ import br.ufrn.sam.model.TurmaModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -15,4 +16,7 @@ public interface JpaTurmaRepository extends JpaRepository<TurmaModel, Integer> {
         Integer semestre, 
         Integer numero
     );
+    
+    List<TurmaModel> findByHorarioContaining(String horario);
+    List<TurmaModel> findByProfessorNomeContainingIgnoreCase(String nome);
 }
