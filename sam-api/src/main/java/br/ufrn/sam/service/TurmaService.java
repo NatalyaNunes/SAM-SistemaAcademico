@@ -2,6 +2,7 @@ package br.ufrn.sam.service;
 
 import br.ufrn.sam.model.TurmaModel;
 import br.ufrn.sam.model.InteresseModel;
+import br.ufrn.sam.model.TurmaComOcupacaoDTO;
 import br.ufrn.sam.repository.JpaTurmaRepository;
 import br.ufrn.sam.repository.JpaInteresseRepository;
 import org.springframework.stereotype.Service;
@@ -99,5 +100,30 @@ public class TurmaService {
             }
         }
         return turmasComConflito;
+    }
+    
+    public TurmaComOcupacaoDTO calcularOcupacao(TurmaModel turma) {
+        int quantidadeInteressados = interesseRepository.findByTurmaIdTurma(turma.getIdTurma()).size();
+
+        int capacidade;
+        if (turma.getCapacidade() != null) {
+            capacidade = turma.getCapacidade();
+        } else {
+            capacidade = 0;
+        }
+
+        int percentual = 0;
+        if (capacidade > 0) {
+            percentual = (int) Math.round((quantidadeInteressados * 100.0) / capacidade);
+        }
+
+        return new TurmaComOcupacaoDTO(turma, quantidadeInteressados, percentual);
+    }
+    
+    public List<TurmaComOcupacaoDTO> listarTodasComOcupacao() {
+        return turmaRepository.findAll()
+                .stream()
+                .map(this::calcularOcupacao)
+                .collect(Collectors.toList());
     }
 }
