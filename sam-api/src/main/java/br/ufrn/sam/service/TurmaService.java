@@ -126,4 +126,16 @@ public class TurmaService {
                 .map(this::calcularOcupacao)
                 .collect(Collectors.toList());
     }
+    
+    public List<TurmaComOcupacaoDTO> listarTurmasOciosas() {
+        return turmaRepository.findAll()
+                .stream()
+                .map(this::calcularOcupacao)
+                .filter(dto -> dto.getPercentualOcupacao() <= 25)
+                .collect(Collectors.toList());
+    }
+
+    public long contarTurmasOciosas() {
+        return listarTurmasOciosas().size();
+    }
 }

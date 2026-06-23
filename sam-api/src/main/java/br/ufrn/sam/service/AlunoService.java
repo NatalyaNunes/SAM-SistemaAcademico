@@ -34,4 +34,8 @@ public class AlunoService {
     public List<AlunoModel> listarTodos() {
         return alunoRepository.findAll();
     }
+    
+    public long contarAlunos() {
+        return alunoRepository.count();
+    }
 }
