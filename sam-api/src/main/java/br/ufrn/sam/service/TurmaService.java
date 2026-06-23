@@ -25,15 +25,22 @@ public class TurmaService {
     }
 
     public TurmaModel cadastrar(TurmaModel turma) {
-        if (turmaRepository.findByCodigo(turma.getCodigo()).isPresent()) {
-            throw new IllegalArgumentException("Código de turma já cadastrado: " + turma.getCodigo());
+        if (turmaRepository.findByDisciplinaAndAnoAndSemestreAndNumero(turma.getDisciplina(), turma.getAno(), turma.getSemestre(), turma.getNumero()).isPresent()) {
+            throw new IllegalArgumentException("Código de turma já cadastrada no mesmo semestre e ano!");
         }
         return turmaRepository.save(turma);
     }
 
-    public TurmaModel buscarPorCodigo(String codigo) {
+    // Método para buscar turmas que estão associadas a disciplinas com codigo x
+
+    /*public TurmaModel buscarPorCodigo(String codigo) {
         return turmaRepository.findByCodigo(codigo)
                 .orElseThrow(() -> new NoSuchElementException("Turma não encontrada: " + codigo));
+    }*/
+
+    public TurmaModel findById(Integer idTurma) {
+        return turmaRepository.findById(idTurma)
+                .orElseThrow(() -> new NoSuchElementException("Turma não encontrada pelo ID: " + idTurma));
     }
 
     public List<TurmaModel> listarTodas() {

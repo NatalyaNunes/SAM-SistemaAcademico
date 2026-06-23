@@ -19,12 +19,12 @@ public class InteresseController {
         this.interesseService = interesseService;
     }
 
-    // POST /api/interesses/{matricula}/{codigoTurma} → registra interesse
-    @PostMapping("/{matricula}/{codigoTurma}")
+    // POST /api/interesses/{matricula}/{idTurma} → registra interesse
+    @PostMapping("/{matricula}/{idTurma}")
     public ResponseEntity<InteresseModel> cadastrar(
             @PathVariable String matricula,
-            @PathVariable String codigoTurma) {
-        InteresseModel salvo = interesseService.cadastrar(matricula, codigoTurma);
+            @PathVariable Integer idTurma) {
+        InteresseModel salvo = interesseService.cadastrar(matricula, idTurma);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 
@@ -34,10 +34,10 @@ public class InteresseController {
         return ResponseEntity.ok(interesseService.listarPorAluno(matricula));
     }
 
-    // GET /api/interesses/turma/{codigoTurma} → lista interessados em uma turma
-    @GetMapping("/turma/{codigoTurma}")
-    public ResponseEntity<List<InteresseModel>> listarPorTurma(@PathVariable String codigoTurma) {
-        return ResponseEntity.ok(interesseService.listarPorTurma(codigoTurma));
+    // GET /api/interesses/turma/{idTurma} → lista interessados em uma turma
+    @GetMapping("/turma/{idTurma}")
+    public ResponseEntity<List<InteresseModel>> listarPorTurma(@PathVariable Integer idTurma) {
+        return ResponseEntity.ok(interesseService.listarPorTurma(idTurma));
     }
 
     // GET /api/interesses → lista todos
@@ -46,12 +46,12 @@ public class InteresseController {
         return ResponseEntity.ok(interesseService.listarTodos());
     }
 
-    @GetMapping("/aluno/{matricula}/simular-conflito/{codigoTurma}")
+    @GetMapping("/aluno/{matricula}/simular-conflito/{idTurma}")
     public ResponseEntity<Map<String, Boolean>> checarConflito(
             @PathVariable String matricula,
-            @PathVariable String codigoTurma) {
+            @PathVariable Integer idTurma) {
 
-        boolean temConflito = interesseService.simularConflitoGrade(matricula, codigoTurma);
+        boolean temConflito = interesseService.simularConflitoGrade(matricula, idTurma.toString());
 
         return ResponseEntity.ok(java.util.Map.of("conflito", temConflito));
     }

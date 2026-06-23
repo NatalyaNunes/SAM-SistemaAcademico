@@ -52,14 +52,14 @@
 
         <script>
             // Essa função deve ser chamada no 'onclick' do botão dentro do seu 'fragment/cardTurma.html'
-            // Exemplo no fragmento: <button th:onclick="'selecionarTurma(\'' + ${turma.codigo} + '\')'">Selecionar</button>
+            // Exemplo no fragmento: <button th:onclick="'selecionarTurma(\'' + ${turma.idTurma} + '\')'">Selecionar</button>
 
-            function selecionarTurma(codigoTurma) {
+            function selecionarTurma(idTurma) {
                 // Pegue a matrícula do aluno logado (aqui está chumbada conforme seu layout, adapte se necessário)
                 const matriculaAluno = "20240023849";
 
                 // 1. Consulta a API para simular o choque de horário ANTES de salvar
-                fetch(`/api/interesses/aluno/${matriculaAluno}/simular-conflito/${codigoTurma}`)
+                fetch(`/api/interesses/aluno/${matriculaAluno}/simular-conflito/${idTurma}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.conflito) {
@@ -68,15 +68,15 @@
                             // Obs: Se você usar SweetAlert2 no projeto, troque o alert() por Swal.fire('Oops...', 'Choque de horário!', 'error');
                         } else {
                             // 3. Se não tiver conflito, prossegue para cadastrar o interesse
-                            cadastrarInteresse(matriculaAluno, codigoTurma);
+                            cadastrarInteresse(matriculaAluno, idTurma);
                         }
                     })
                     .catch(error => console.error('Erro ao verificar conflito:', error));
             }
 
             // Função auxiliar para de fato realizar a seleção após passar pela validação
-            function cadastrarInteresse(matricula, codigoTurma) {
-                fetch(`/api/interesses/${matricula}/${codigoTurma}`, {
+            function cadastrarInteresse(matricula, idTurma) {
+                fetch(`/api/interesses/${matricula}/${idTurma}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' }
                 }).then(response => {

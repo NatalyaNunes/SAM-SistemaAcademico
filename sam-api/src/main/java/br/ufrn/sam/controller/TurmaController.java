@@ -25,10 +25,10 @@ public class TurmaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salva); // retorna 201
     }
 
-    // GET /api/turmas/{codigo} → busca uma turma pelo código
-    @GetMapping("/{codigo}")
-    public ResponseEntity<TurmaModel> buscar(@PathVariable String codigo) {
-        return ResponseEntity.ok(turmaService.buscarPorCodigo(codigo)); // retorna 200
+    // GET /api/turmas/{idTurma} → busca uma turma pelo ID
+    @GetMapping("/{idTurma}")
+    public ResponseEntity<TurmaModel> buscar(@PathVariable Integer idTurma) {
+        return ResponseEntity.ok(turmaService.findById(idTurma)); // retorna 200
     }
 
     // GET /api/turmas → lista todas as turmas

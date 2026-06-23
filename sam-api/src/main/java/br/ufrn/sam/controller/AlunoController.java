@@ -3,6 +3,7 @@ package br.ufrn.sam.controller;
 import br.ufrn.sam.model.AlunoModel;
 import br.ufrn.sam.model.PessoaModel;
 import br.ufrn.sam.service.AlunoService;
+import br.ufrn.sam.model.NivelPrioridade;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,15 @@ public class AlunoController {
     // POST /api/alunos → cadastra um novo aluno
     @PostMapping
     public ResponseEntity<AlunoModel> cadastrar(@RequestBody AlunoModel aluno) {
+
+        if (aluno.getIngressoVestibularPrimeiroPeriodo() == null) {
+            aluno.setIngressoVestibularPrimeiroPeriodo(false);
+        }
+        
+        if (aluno.getNivelPrioridade() == null) {
+            aluno.setNivelPrioridade(NivelPrioridade.NIVEL_I);
+        }
+
         AlunoModel salvo = alunoService.cadastrar(aluno);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo); // retorna 201
     }

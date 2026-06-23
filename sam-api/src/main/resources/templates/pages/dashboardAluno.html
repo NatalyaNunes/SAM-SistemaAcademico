@@ -41,7 +41,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <span class="d-block fw-bold" style="font-size: 0.9rem;" th:text="${turma.disciplina.nome}">Nome da Disciplina</span>
-                                    <small class="text-muted" th:text="'Turma ' + ${turma.codigo}">Turma 01</small>
+                                    <small class="text-muted" th:text="'Turma ' + ${turma.disciplina.codigo} + ' - T' + ${turma.numero}">Turma 01</small>
                                 </div>
                                 
                                 <!-- Em conflito -->
