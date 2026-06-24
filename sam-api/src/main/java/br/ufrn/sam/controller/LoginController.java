@@ -29,15 +29,16 @@ public class LoginController {
         String email = request.get("login");
         String senha = request.get("senha");
 
-        System.out.println("=== TENTATIVA DE LOGIN ===");
-        System.out.println("Email extraído: [" + email + "]");
-        System.out.println("Senha extraída: [" + senha + "]");
-
         Optional<PessoaModel> pessoa = pessoaRepository.findByLoginAndSenha(email, senha);
 
         if (pessoa.isPresent()) {
-            session.setAttribute("usuarioLogado", pessoa.get());
-            return ResponseEntity.ok().body("{\"mensagem\": \"Login autorizado\"}");
+            PessoaModel usuario = pessoa.get();
+            session.setAttribute("usuarioLogado", usuario);
+
+            String rotaDestino = usuario.getIsAluno() ? "/dashboardAluno" : "/coordenacao/dashboard";
+            String jsonResposta = String.format("{\"mensagem\": \"Login autorizado\", \"redirect\": \"%s\"}", rotaDestino);
+            
+            return ResponseEntity.ok().body(jsonResposta);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"mensagem\": \"Credenciais inválidas\"}");
         }

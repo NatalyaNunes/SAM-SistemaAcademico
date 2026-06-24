@@ -41,15 +41,8 @@
             <li class="nav-item">
                 <a class="nav-link px-3 py-2" 
                    th:classappend="${menuAtivo == 'dashboardCoordenacao'} ? 'active' : ''" 
-                   th:href="@{/coordenacao/dashboardCoordenacao}">
+                   th:href="@{/coordenacao/dashboard}">
                     <i class="bi bi-grid-1x2 me-3"></i>Painel Geral
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link px-3 py-2" 
-                   th:classappend="${menuAtivo == 'formacao'} ? 'active' : ''" 
-                   th:href="@{/coordenacao/formacao}">
-                    <i class="bi bi-people-fill me-3"></i>Relatório de Formandos
                 </a>
             </li>
             <li class="nav-item">

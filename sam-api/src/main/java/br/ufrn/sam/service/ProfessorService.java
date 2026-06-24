@@ -31,4 +31,17 @@ public class ProfessorService {
     public List<ProfessorModel> listarTodos() {
         return professorRepository.findAll();
     }
+
+    public ProfessorModel atualizar(Integer idPessoa, ProfessorModel professorAtualizado) {
+        ProfessorModel professorExistente = professorRepository.findById(idPessoa)
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado com o ID: " + idPessoa));
+
+        professorExistente.setSiape(professorAtualizado.getSiape());
+        professorExistente.setDepartamento(professorAtualizado.getDepartamento());
+        professorExistente.setTitulacao(professorAtualizado.getTitulacao());
+        professorExistente.setNome(professorAtualizado.getNome());
+        professorExistente.setLogin(professorAtualizado.getLogin());
+
+        return professorRepository.save(professorExistente);
+    }
 }

@@ -8,14 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
 import java.util.Set;
 import br.ufrn.sam.model.AlunoModel;
 import br.ufrn.sam.model.InteresseModel;
 import br.ufrn.sam.model.PessoaModel;
-import br.ufrn.sam.model.TurmaModel;
 import br.ufrn.sam.service.InteresseService;
-import br.ufrn.sam.service.TurmaService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
