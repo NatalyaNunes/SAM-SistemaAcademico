@@ -43,7 +43,8 @@
                                     placeholder="Buscar professor..." style="box-shadow: none;">
                             </div>
                             <button class="btn btn-add px-3 py-2 btn-sm text-nowrap" data-bs-toggle="modal"
-                                data-bs-target="#modalNovoProfessor">
+                                data-bs-target="#modalNovoProfessor"
+                                onclick="document.getElementById('idProfessorEdit').value = ''; document.getElementById('formNovoProfessor').reset();">
                                 <i class="bi bi-person-plus me-1"></i> Novo Professor
                             </button>
                         </div>
@@ -72,11 +73,20 @@
                                             1452367</td>
                                         <td class="text-center py-3 px-4">
                                             <div class="btn-group btn-group-sm gap-1">
-                                                <button class="btn btn-sm"
-                                                    style="background-color: var(--primary-light); color: var(--primary); border: none; border-radius: 6px;"
-                                                    title="Editar">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
+                                                <button type="button" class="btn btn-sm"
+    style="background-color: var(--primary-light); color: var(--primary); border: none; border-radius: 6px;"
+    title="Editar"
+    data-bs-toggle="modal" 
+    data-bs-target="#modalNovoProfessor"
+    th:data-id="${prof.idPessoa}"
+    th:data-nome="${prof.nome}"
+    th:data-siape="${prof.siape}"
+    th:data-email="${prof.login}"
+    th:data-dept="${prof.departamento}"
+    th:data-tit="${prof.titulacao}"
+    onclick="prepararEdicaoProfessor(this)">
+    <i class="bi bi-pencil-square"></i>
+</button>
                                                 <button class="btn btn-sm"
                                                     style="background-color: #fef2f2; color: #ef4444; border: none; border-radius: 6px;"
                                                     title="Desativar">
@@ -230,7 +240,7 @@
                     <div class="modal-body px-4 py-4">
                         <form id="formNovoProfessor">
                             <div class="row g-3">
-
+                                <input type="hidden" id="idProfessorEdit" value="">
                                 <div class="col-md-8">
                                     <label class="form-label text-muted fw-semibold small mb-1">Nome Completo</label>
                                     <input id="nomeProfessor" type="text" class="form-control"

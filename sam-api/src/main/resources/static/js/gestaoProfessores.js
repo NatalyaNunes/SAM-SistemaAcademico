@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (btnSalvarProf) {
         btnSalvarProf.addEventListener("click", async function () {
-        
+
             const payload = {
                 nome: document.getElementById("nomeProfessor").value,
                 siape: document.getElementById("siapeProfessor").value,
@@ -24,12 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (response.status === 201) {
                     alert("Professor cadastrado com sucesso!");
-                    
-                    document.getElementById("formNovoProfessor").reset(); 
+
+                    document.getElementById("formNovoProfessor").reset();
                     const modal = bootstrap.Modal.getInstance(document.getElementById('modalNovoProfessor'));
                     modal.hide();
 
-                    window.location.reload(); 
+                    window.location.reload();
                 } else {
                     alert("Erro ao cadastrar. Verifique o console.");
                     console.log(await response.text());
@@ -39,5 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Erro de conexão com a API.");
             }
         });
+    }
+
+    function prepararEdicaoProfessor(botao) {
+        document.getElementById("idProfessorEdit").value = botao.getAttribute("data-id");
+        document.getElementById("nomeProfessor").value = botao.getAttribute("data-nome");
+        document.getElementById("siapeProfessor").value = botao.getAttribute("data-siape");
+        document.getElementById("emailProfessor").value = botao.getAttribute("data-email");
+        document.getElementById("departamentoProfessor").value = botao.getAttribute("data-dept");
+        document.getElementById("titulacaoProfessor").value = botao.getAttribute("data-tit");
     }
 });
