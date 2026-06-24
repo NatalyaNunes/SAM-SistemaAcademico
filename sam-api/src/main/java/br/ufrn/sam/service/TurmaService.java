@@ -26,7 +26,8 @@ public class TurmaService {
     }
 
     public TurmaModel cadastrar(TurmaModel turma) {
-        if (turmaRepository.findByDisciplinaAndAnoAndSemestreAndNumero(turma.getDisciplina(), turma.getAno(), turma.getSemestre(), turma.getNumero()).isPresent()) {
+        if (turmaRepository.findByDisciplinaAndAnoAndSemestreAndNumero(turma.getDisciplina(), turma.getAno(),
+                turma.getSemestre(), turma.getNumero()).isPresent()) {
             throw new IllegalArgumentException("Código de turma já cadastrada no mesmo semestre e ano!");
         }
         return turmaRepository.save(turma);
@@ -34,10 +35,13 @@ public class TurmaService {
 
     // Método para buscar turmas que estão associadas a disciplinas com codigo x
 
-    /*public TurmaModel buscarPorCodigo(String codigo) {
-        return turmaRepository.findByCodigo(codigo)
-                .orElseThrow(() -> new NoSuchElementException("Turma não encontrada: " + codigo));
-    }*/
+    /*
+     * public TurmaModel buscarPorCodigo(String codigo) {
+     * return turmaRepository.findByCodigo(codigo)
+     * .orElseThrow(() -> new NoSuchElementException("Turma não encontrada: " +
+     * codigo));
+     * }
+     */
 
     public TurmaModel findById(Integer idTurma) {
         return turmaRepository.findById(idTurma)
@@ -101,7 +105,7 @@ public class TurmaService {
         }
         return turmasComConflito;
     }
-    
+
     public TurmaComOcupacaoDTO calcularOcupacao(TurmaModel turma) {
         int quantidadeInteressados = interesseRepository.findByTurmaIdTurma(turma.getIdTurma()).size();
 
@@ -119,14 +123,14 @@ public class TurmaService {
 
         return new TurmaComOcupacaoDTO(turma, quantidadeInteressados, percentual);
     }
-    
+
     public List<TurmaComOcupacaoDTO> listarTodasComOcupacao() {
         return turmaRepository.findAll()
                 .stream()
                 .map(this::calcularOcupacao)
                 .collect(Collectors.toList());
     }
-    
+
     public List<TurmaComOcupacaoDTO> listarTurmasOciosas() {
         return turmaRepository.findAll()
                 .stream()
@@ -137,5 +141,27 @@ public class TurmaService {
 
     public long contarTurmasOciosas() {
         return listarTurmasOciosas().size();
+    }
+
+    public List<TurmaModel> filtrarPorHorario(String horario) {
+        if (horario == null || horario.trim().isEmpty()) {
+            return turmaRepository.findAll();
+        }
+        return turmaRepository.findByHorarioContaining(horario);
+    }
+
+    public List<TurmaModel> filtrarPorProfessor(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            return turmaRepository.findAll();
+        }
+        return turmaRepository.findByProfessorNomeContainingIgnoreCase(nome);
+    }
+
+    public List<TurmaModel> filtrarPorDisciplina(String busca) {
+        if (busca == null || busca.trim().isEmpty()) {
+            return turmaRepository.findAll();
+        }
+        return turmaRepository.findByDisciplinaCodigoContainingIgnoreCaseOrDisciplinaNomeContainingIgnoreCase(busca,
+                busca);
     }
 }

@@ -7,6 +7,7 @@ import br.ufrn.sam.service.TurmaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Set;
 import br.ufrn.sam.model.AlunoModel;
@@ -20,13 +21,12 @@ public class RenderController {
 
     private final TurmaService turmaService;
     private final InteresseService interesseService;
-    
 
     public RenderController(TurmaService turmaService, InteresseService interesseService) {
         this.turmaService = turmaService;
         this.interesseService = interesseService;
     }
-    
+
     @GetMapping("/dashboardAluno")
     public String dashboardAluno(HttpSession session, Model model) {
         PessoaModel usuarioLogado = (PessoaModel) session.getAttribute("usuarioLogado");
@@ -51,10 +51,32 @@ public class RenderController {
     }
 
     @GetMapping("/turmas")
-    public String turmas(Model model) {
-        List<TurmaModel> listaDeTurmas = turmaService.listarTodas();
-        model.addAttribute("turmas", listaDeTurmas);
+    public String turmas(Model model,
+            @RequestParam(required = false) String buscaDisciplina,
+            @RequestParam(required = false) String turno,
+            @RequestParam(required = false) String buscaProfessor) {
+
+        List<TurmaModel> turmasEncontradas;
+
         
+        if (buscaDisciplina != null && !buscaDisciplina.trim().isEmpty()) {
+            turmasEncontradas = turmaService.filtrarPorDisciplina(buscaDisciplina);
+
+        } else if (buscaProfessor != null && !buscaProfessor.trim().isEmpty()) {
+            turmasEncontradas = turmaService.filtrarPorProfessor(buscaProfessor);
+
+        } else if (turno != null && !turno.trim().isEmpty()) {
+            turmasEncontradas = turmaService.filtrarPorHorario(turno);
+
+        } else {
+            turmasEncontradas = turmaService.listarTodas();
+        }
+
+        model.addAttribute("turmas", turmasEncontradas);
+        model.addAttribute("buscaDisciplina", buscaDisciplina);
+        model.addAttribute("turnoSelecionado", turno);
+        model.addAttribute("buscaProfessor", buscaProfessor);
+
         return "pages/turmas";
     }
 
