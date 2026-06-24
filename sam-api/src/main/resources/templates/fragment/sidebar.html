@@ -47,13 +47,6 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link px-3 py-2" 
-                   th:classappend="${menuAtivo == 'formacao'} ? 'active' : ''" 
-                   th:href="@{/coordenacao/formacao}">
-                    <i class="bi bi-people-fill me-3"></i>Relatório de Formandos
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link px-3 py-2" 
                    th:classappend="${menuAtivo == 'turmasOciosas'} ? 'active' : ''" 
                    th:href="@{/coordenacao/turmasOciosas}">
                     <i class="bi bi-exclamation-triangle-fill me-3"></i>Turmas Ociosas

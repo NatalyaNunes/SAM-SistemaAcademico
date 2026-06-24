@@ -39,6 +39,12 @@ public class AlunoController {
         AlunoModel salvo = alunoService.cadastrar(aluno);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo); // retorna 201
     }
+    
+    // GET /api/alunos/contagem → retorna o total de alunos cadastrados
+    @GetMapping("/contagem")
+    public ResponseEntity<Long> contarAlunos() {
+        return ResponseEntity.ok(alunoService.contarAlunos());
+    }
 
     // GET /api/alunos/{matricula} → busca um aluno pela matrícula
     @GetMapping("/{matricula}")

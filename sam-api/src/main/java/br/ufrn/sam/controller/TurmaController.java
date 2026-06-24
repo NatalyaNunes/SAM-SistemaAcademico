@@ -1,6 +1,7 @@
 package br.ufrn.sam.controller;
 
 import br.ufrn.sam.model.TurmaModel;
+import br.ufrn.sam.model.TurmaComOcupacaoDTO;
 import br.ufrn.sam.service.TurmaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,5 +36,23 @@ public class TurmaController {
     @GetMapping
     public ResponseEntity<List<TurmaModel>> listar() {
         return ResponseEntity.ok(turmaService.listarTodas());
+    }
+    
+    // GET /api/turmas/com-ocupacao → lista todas as turmas com quantidade de interessados e percentual de ocupação
+    @GetMapping("/com-ocupacao")
+    public ResponseEntity<List<TurmaComOcupacaoDTO>> listarComOcupacao() {
+        return ResponseEntity.ok(turmaService.listarTodasComOcupacao());
+    }
+    
+    // GET /api/turmas/ociosas → lista turmas com ocupação <= 25%
+    @GetMapping("/ociosas")
+    public ResponseEntity<List<TurmaComOcupacaoDTO>> listarOciosas() {
+        return ResponseEntity.ok(turmaService.listarTurmasOciosas());
+    }
+
+    // GET /api/turmas/ociosas/contagem → quantidade de turmas com ocupação <= 25%
+    @GetMapping("/ociosas/contagem")
+    public ResponseEntity<Long> contarOciosas() {
+        return ResponseEntity.ok(turmaService.contarTurmasOciosas());
     }
 }
