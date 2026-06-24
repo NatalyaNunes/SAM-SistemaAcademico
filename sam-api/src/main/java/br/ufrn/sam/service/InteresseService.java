@@ -1,6 +1,7 @@
 package br.ufrn.sam.service;
 
 import br.ufrn.sam.model.AlunoModel;
+import br.ufrn.sam.model.DisciplinaDemandaDTO;
 import br.ufrn.sam.model.InteresseModel;
 import br.ufrn.sam.model.TurmaModel;
 import br.ufrn.sam.repository.JpaAlunoRepository;
@@ -76,6 +77,10 @@ public class InteresseService {
 
     public List<InteresseModel> listarTodos() {
         return interesseRepository.findAll();
+    }
+
+    public List<DisciplinaDemandaDTO> listarDisciplinasMaisProcuradas() {
+        return interesseRepository.findDisciplinasMaisProcuradas();
     }
 
     public boolean simularConflitoGrade(String matricula, String codigoTurmaNova) {
