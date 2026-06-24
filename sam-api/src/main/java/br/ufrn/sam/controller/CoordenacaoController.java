@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.ufrn.sam.model.DisciplinaModel;
 import br.ufrn.sam.model.ProfessorModel;
+import br.ufrn.sam.model.TurmaComOcupacaoDTO;
 import br.ufrn.sam.model.TurmaModel;
 import br.ufrn.sam.service.DisciplinaService;
 import br.ufrn.sam.service.ProfessorService;
@@ -35,6 +36,9 @@ public class CoordenacaoController {
 
     @GetMapping("/turmasOciosas")
     public String ociosas(Model model) {
+        List<TurmaComOcupacaoDTO> turmasOciosas = turmaService.listarTurmasOciosas();
+        model.addAttribute("turmasOciosas", turmasOciosas);
+        model.addAttribute("totalOciosas", turmaService.contarTurmasOciosas());
         return "pages/turmasOciosas";
     }
 
