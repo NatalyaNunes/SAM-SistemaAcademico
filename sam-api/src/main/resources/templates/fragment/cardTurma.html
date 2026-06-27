@@ -4,9 +4,6 @@
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between mb-3">
                     <span class="tag-info fw-bold text-primary" th:text="${turma.disciplina.codigo}">CODIGO</span>
-
-                    <!--Definir após interesse estar ok-->
-                    <span class="badge bg-success-subtle text-success small">65% Ocupada</span>
                 </div>
 
                 <h5 class="fw-bold mb-1" th:text="${turma.disciplina.nome}">Nome da Disciplina</h5>
@@ -24,8 +21,6 @@
                     <div>
                         <small class="d-block text-muted" th:text="|Vagas Totais: ${turma.capacidade}|">Vagas Totais:
                             0</small>
-                        <!--Definir após interesse estar ok-->
-                        <small class="d-block text-muted">Interessados: 26</small>
                     </div>
                 </div>
 
