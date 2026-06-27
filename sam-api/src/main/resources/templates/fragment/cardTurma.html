@@ -4,15 +4,16 @@
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between mb-3">
                     <span class="tag-info fw-bold text-primary" th:text="${turma.disciplina.codigo}">CODIGO</span>
-                
+
                     <!--Definir após interesse estar ok-->
                     <span class="badge bg-success-subtle text-success small">65% Ocupada</span>
                 </div>
-                
+
                 <h5 class="fw-bold mb-1" th:text="${turma.disciplina.nome}">Nome da Disciplina</h5>
                 <p class="text-muted small mb-4">
                     <span th:text="${turma.disciplina.codigo} + ' - ' + ${turma.numero}">Turma 01</span> <br>
-                    <i class="fa fa-user-circle me-1"></i> Prof. <span th:text="${turma.professor.nome}">Nome do Professor</span>
+                    <i class="fa fa-user-circle me-1"></i> Prof. <span th:text="${turma.professor.nome}">Nome do
+                        Professor</span>
                 </p>
 
                 <div class="d-flex align-items-center mb-4">
@@ -21,13 +22,18 @@
                         <small class="text-muted" style="font-size: 0.65rem;">Horário</small>
                     </div>
                     <div>
-                        <small class="d-block text-muted" th:text="|Vagas Totais: ${turma.capacidade}|">Vagas Totais: 0</small>
+                        <small class="d-block text-muted" th:text="|Vagas Totais: ${turma.capacidade}|">Vagas Totais:
+                            0</small>
                         <!--Definir após interesse estar ok-->
                         <small class="d-block text-muted">Interessados: 26</small>
                     </div>
                 </div>
 
-                <button class="btn btn-outline-primary btn-sm w-100 rounded-pill fw-bold">
+                <input type="hidden" class="id-turma" th:value="${turma.idTurma}">
+    
+                <input type="hidden" class="matricula" th:value="${aluno.matricula}">
+
+                <button class="btn btn-outline-primary btn-sm w-100 rounded-pill fw-bold btn-adicionar">
                     <i class="bi bi-plus-circle me-1"></i> Adicionar Interesse
                 </button>
             </div>

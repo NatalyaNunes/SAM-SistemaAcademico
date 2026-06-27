@@ -54,7 +54,21 @@ public class InteresseService {
                 aluno,
                 turma);
 
-        return interesseRepository.save(interesse);
+        InteresseModel interesseSalvo = interesseRepository.save(interesse);
+        recalcularRankingDaTurma(idTurma);
+
+        return interesseSalvo;
+    }
+
+    public void recalcularRankingDaTurma(Integer idTurma) {
+        List<InteresseModel> interesses = interesseRepository.findByTurmaIdTurma(idTurma);
+        interesses.sort(new InteresseRankingComparator());
+        
+        for (int i = 0; i < interesses.size(); i++) {
+            InteresseModel inter = interesses.get(i);
+            inter.setPosicaoLista(i + 1);
+            interesseRepository.save(inter);
+        }
     }
 
     public List<InteresseModel> listarPorAluno(String matricula) {

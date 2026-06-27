@@ -54,14 +54,20 @@ public class RenderController {
     }
 
     @GetMapping("/turmas")
-    public String turmas(Model model,
+    public String turmas(Model model, HttpSession session,
             @RequestParam(required = false) String buscaDisciplina,
             @RequestParam(required = false) String turno,
             @RequestParam(required = false) String buscaProfessor) {
 
+
+        PessoaModel pessoa = (PessoaModel) session.getAttribute("usuarioLogado");
+        AlunoModel aluno = null;              
         List<TurmaModel> turmasEncontradas;
 
-        
+        if (pessoa != null && pessoa.getIsAluno()) {
+            aluno = (AlunoModel) pessoa;
+        }
+
         if (buscaDisciplina != null && !buscaDisciplina.trim().isEmpty()) {
             turmasEncontradas = turmaService.filtrarPorDisciplina(buscaDisciplina);
 
@@ -79,6 +85,7 @@ public class RenderController {
         model.addAttribute("buscaDisciplina", buscaDisciplina);
         model.addAttribute("turnoSelecionado", turno);
         model.addAttribute("buscaProfessor", buscaProfessor);
+        model.addAttribute("aluno", aluno);
 
         return "pages/turmas";
     }
