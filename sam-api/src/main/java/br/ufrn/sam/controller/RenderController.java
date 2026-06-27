@@ -1,6 +1,8 @@
 package br.ufrn.sam.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import br.ufrn.sam.model.TurmaModel;
 import br.ufrn.sam.service.TurmaService;
@@ -13,6 +15,7 @@ import java.util.Set;
 import br.ufrn.sam.model.AlunoModel;
 import br.ufrn.sam.model.InteresseModel;
 import br.ufrn.sam.model.PessoaModel;
+import br.ufrn.sam.model.TurmaComOcupacaoDTO;
 import br.ufrn.sam.service.InteresseService;
 import jakarta.servlet.http.HttpSession;
 
@@ -81,7 +84,32 @@ public class RenderController {
     }
 
     @GetMapping("/ranking")
-    public String ranking(Model model) {
+    public String ranking(Model model, HttpSession session) {
+        PessoaModel pessoa = (PessoaModel) session.getAttribute("usuarioLogado");
+
+        if (pessoa == null) {
+            return "redirect:/sam";
+        }
+
+        if(!pessoa.getIsAluno()) {
+                return "redirect:/sam";
+        }
+        AlunoModel aluno = (AlunoModel) pessoa;
+        List<InteresseModel> interessesUsuario = interesseService.listarPorAluno(aluno.getMatricula());
+
+        Map<Integer, TurmaComOcupacaoDTO> mapaOcupacao = new HashMap<>();
+
+        for (InteresseModel interesse : interessesUsuario) {
+            TurmaModel turma = interesse.getTurma();
+            
+           
+            if (!mapaOcupacao.containsKey(turma.getIdTurma())) {
+                mapaOcupacao.put(turma.getIdTurma(), turmaService.calcularOcupacao(turma));
+            }
+        }
+
+        model.addAttribute("interesses", interessesUsuario);
+        model.addAttribute("mapaOcupacao", mapaOcupacao);
         return "pages/ranking";
     }
 

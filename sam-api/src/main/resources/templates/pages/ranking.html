@@ -5,8 +5,48 @@
             <p class="text-muted">Acompanhe sua posição baseada nos índices acadêmicos atuais.</p>
         </header>
 
-        <div class="row g-4">
-            <div th:replace="~{fragment/cardRanking :: cardRanking}"></div>
+        <div class="row m-4" th:each="interesse : ${interesses}">
+            <div class="col-md-6">
+                <div class="card ranking-card bg-white h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-4">
+                            <div>
+                                <span class="pill-info mb-2 d-inline-block"
+                                    th:text="${interesse.turma.disciplina.codigo}">DIM0510</span>
+                                <h5 class="fw-bold mb-0" th:text="${interesse.turma.disciplina.nome}">Processos de
+                                    Software</h5>
+                                <small class="text-muted"
+                                    th:text="'Turma ' + ${interesse.turma.numero} + ' • ' + ${interesse.turma.professor.nome}">Turma
+                                    01 • Prof. Dr. André Silva</small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge px-3 py-2 border"
+                                    th:with="estaDentro=${interesse?.posicaoLista != null and interesse?.turma?.capacidade != null and interesse.posicaoLista <= interesse.turma.capacidade}"
+                                    th:classappend="${estaDentro} ? 'bg-success-subtle text-success border-success-subtle' : 'bg-danger-subtle text-danger border-danger-subtle'"
+                                    th:text="${estaDentro} ? 'Dentro das Vagas' : 'Fila de Espera'">
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center mb-4">
+                            <div class="col-auto">
+                                <div class="posicao-destaque text-primary" th:text="${interesse.posicaoLista} + 'º'">12º
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="text-muted small fw-medium mb-1">Ocupação da Turma</div>
+                                <div class="progress-bar bg-primary"
+                                    th:style="'width: ' + ${mapaOcupacao[interesse?.turma?.idTurma]?.percentualOcupacao} + '%'">
+                                </div>
+                                <small class="fw-bold"
+                                    th:text="${mapaOcupacao[interesse?.turma?.idTurma]?.quantidadeInteressados} + ' / ' + ${interesse?.turma?.capacidade} + ' interessados'">
+                                    12 / 40 interessados
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
