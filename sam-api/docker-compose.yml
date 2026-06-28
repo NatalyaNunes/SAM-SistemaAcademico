@@ -1,5 +1,4 @@
 services:
-
   mysql:
     image: mysql:8.0
     container_name: sam-mysql
@@ -26,6 +25,8 @@ services:
       SPRING_DATASOURCE_USERNAME: sam
       SPRING_DATASOURCE_PASSWORD: sam123
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_SQL_INIT_MODE: always
+      SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: "true"
     depends_on:
       mysql:
         condition: service_healthy
