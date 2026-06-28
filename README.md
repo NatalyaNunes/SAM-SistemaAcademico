@@ -145,7 +145,7 @@ Caso a aplicação tente iniciar antes do banco estar disponível, basta aguarda
 | Página                | URL                                                    |
 | --------------------- | ------------------------------------------------------ |
 | Login                 | http://localhost:8080/sam                              |
-| Dashboard Coordenação | http://localhost:8080/coordenacao/dashboardCoordenacao |
+| Dashboard Coordenação | http://localhost:8080/coordenacao/dashboard            |
 | Dashboard Aluno       | http://localhost:8080/dashboardAluno                   |
 | Turmas                | http://localhost:8080/turmas                           |
 
@@ -232,7 +232,7 @@ Disciplina: Processos de Software
 
 ---
 
-# 🛑 Encerrando a aplicação
+# Encerrando a aplicação
 
 Para parar todos os containers:
 
