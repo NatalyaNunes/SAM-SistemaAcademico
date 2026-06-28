@@ -32,7 +32,6 @@
 - O pipeline CI/CD ainda executa com `-DskipTests`, sem validação automatizada de código
 - Ausência de testes unitários e de integração para Services e Controllers
 - Ciclo de tentativa e erro na configuração do Docker consumiu tempo significativo — ausência de checklist de ambiente documentado
-- A página de Turmas Ociosas ainda usa dados estáticos no HTML, apesar do endpoint `/api/turmas/ociosas` existir e estar funcional
 
 ## Reflexão Final
 
