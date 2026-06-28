@@ -20,11 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 if (response.status === 200) {
+                    const data = await response.json(); 
+
                     alert("Login realizado com sucesso! Bem-vindo(a).");
                     const modalInstancia = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
                     modalInstancia.hide();
 
-                    window.location.href = "/dashboardAluno";
+                    window.location.href = data.redirect;
                 } else if (response.status === 401) {
                     alert("E-mail ou senha incorretos. Tente novamente.");
                 } else {

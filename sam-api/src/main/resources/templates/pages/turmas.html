@@ -6,6 +6,7 @@
         </header>
 
         <div class="filter-section mb-5 shadow-sm">
+            <form action="/turmas" method="GET">
             <div class="row g-3 align-items-end">
                 <div class="col-md-4">
                     <label class="form-label small fw-bold text-muted">Pesquisar Disciplina</label>
@@ -13,26 +14,30 @@
                         <span class="input-group-text bg-white border-end-0"><i
                                 class="bi bi-search text-muted"></i></span>
                         <input type="text" class="form-control border-start-0"
-                            placeholder="Nome ou código (ex: DIM0510)">
+                            placeholder="Nome ou código (ex: DIM0510)" th:value="${buscaDisciplina}"
+                            name="buscaDisciplina">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label small fw-bold text-muted">Turno</label>
-                    <select class="form-select">
-                        <option selected>Todos os turnos</option>
-                        <option>Manhã</option>
-                        <option>Tarde</option>
-                        <option>Noite</option>
+                    <select class="form-select" name="turno">
+                        <option value="" th:selected="${turnoSelecionado == null or turnoSelecionado == ''}">Todos os
+                            turnos</option>
+                        <option value="M" th:selected="${turnoSelecionado == 'M'}">Manhã</option>
+                        <option value="T" th:selected="${turnoSelecionado == 'T'}">Tarde</option>
+                        <option value="N" th:selected="${turnoSelecionado == 'N'}">Noite</option>
                     </select>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label small fw-bold text-muted">Professor</label>
-                    <input type="text" class="form-control" placeholder="Filtrar por docente...">
+                    <input type="text" class="form-control" placeholder="Filtrar por docente..."
+                        th:value="${buscaProfessor}" name="buscaProfessor">
                 </div>
                 <div class="col-md-2">
-                    <button class="btn btn-primary w-100 fw-bold py-2 shadow-sm">Filtrar</button>
+                    <button type="submit" class="btn btn-primary w-100 fw-bold py-2 shadow-sm">Filtrar</button>
                 </div>
             </div>
+            </form>
         </div>
 
         <div class="row g-4">
@@ -47,7 +52,8 @@
             </div>
         </div>
 
-        
+
+        <script th:src="@{/js/gestaoInteresse.js}"></script>
         <script>
             //Script deve ser analisado e verificado
 

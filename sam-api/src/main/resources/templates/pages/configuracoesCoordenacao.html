@@ -43,7 +43,8 @@
                                     placeholder="Buscar professor..." style="box-shadow: none;">
                             </div>
                             <button class="btn btn-add px-3 py-2 btn-sm text-nowrap" data-bs-toggle="modal"
-                                data-bs-target="#modalNovoProfessor">
+                                data-bs-target="#modalNovoProfessor"
+                                onclick="document.getElementById('idProfessorEdit').value = ''; document.getElementById('formNovoProfessor').reset();">
                                 <i class="bi bi-person-plus me-1"></i> Novo Professor
                             </button>
                         </div>
@@ -60,42 +61,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr th:each="prof : ${professores}">
                                         <td class="px-4 py-3">
-                                            <div class="fw-bold" style="color: var(--text-main);">Prof. Dr. Arnaldo
+                                            <div class="fw-bold" style="color: var(--text-main);"
+                                                th:text="${prof.nome}">Prof. Dr. Arnaldo
                                                 Silva</div>
-                                            <small class="text-muted">arnaldo.silva@instituicao.edu.br</small>
+                                            <small class="text-muted"
+                                                th:text="${prof.login}">arnaldo.silva@instituicao.edu.br</small>
                                         </td>
-                                        <td class="text-center py-3 fw-medium text-muted">1452367</td>
+                                        <td class="text-center py-3 fw-medium text-muted" th:text="${prof.siape}">
+                                            1452367</td>
                                         <td class="text-center py-3 px-4">
                                             <div class="btn-group btn-group-sm gap-1">
-                                                <button class="btn btn-sm"
-                                                    style="background-color: var(--primary-light); color: var(--primary); border: none; border-radius: 6px;"
-                                                    title="Editar">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
-                                                <button class="btn btn-sm"
-                                                    style="background-color: #fef2f2; color: #ef4444; border: none; border-radius: 6px;"
-                                                    title="Desativar">
-                                                    <i class="bi bi-person-x"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-4 py-3">
-                                            <div class="fw-bold" style="color: var(--text-main);">Profa. Dra. Maria
-                                                Souza</div>
-                                            <small class="text-muted">maria.souza@instituicao.edu.br</small>
-                                        </td>
-                                        <td class="text-center py-3 fw-medium text-muted">2187493</td>
-                                        <td class="text-center py-3 px-4">
-                                            <div class="btn-group btn-group-sm gap-1">
-                                                <button class="btn btn-sm"
-                                                    style="background-color: var(--primary-light); color: var(--primary); border: none; border-radius: 6px;"
-                                                    title="Editar">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
+                                                <button type="button" class="btn btn-sm"
+    style="background-color: var(--primary-light); color: var(--primary); border: none; border-radius: 6px;"
+    title="Editar"
+    data-bs-toggle="modal" 
+    data-bs-target="#modalNovoProfessor"
+    th:data-id="${prof.idPessoa}"
+    th:data-nome="${prof.nome}"
+    th:data-siape="${prof.siape}"
+    th:data-email="${prof.login}"
+    th:data-dept="${prof.departamento}"
+    th:data-tit="${prof.titulacao}"
+    onclick="prepararEdicaoProfessor(this)">
+    <i class="bi bi-pencil-square"></i>
+</button>
                                                 <button class="btn btn-sm"
                                                     style="background-color: #fef2f2; color: #ef4444; border: none; border-radius: 6px;"
                                                     title="Desativar">
@@ -134,13 +125,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr th:each="d : ${disciplinas}">
                                         <td class="px-4 py-3">
-                                            <div class="fw-bold" style="color: var(--text-main);">Estrutura de Dados
+                                            <div class="fw-bold" style="color: var(--text-main);" th:text="${d.nome}">
+                                                Estrutura de Dados
                                                 II</div>
-                                            <small class="text-muted">DIM0611</small>
+                                            <small class="text-muted" th:text="${d.codigo}">DIM0611</small>
                                         </td>
-                                        <td class="text-center py-3 fw-medium text-muted">60h</td>
+                                        <td class="text-center py-3 fw-medium text-muted" th:text="${d.chTotal} + 'h'">
+                                            60h</td>
                                         <td class="py-3">
                                             <span class="badge-soft-success d-inline-block">DIM0120</span>
                                         </td>
@@ -184,58 +177,28 @@
                                     <tr>
                                         <th class="border-0 text-muted fw-semibold py-3 px-4">Turma / Disciplina</th>
                                         <th class="border-0 text-muted fw-semibold py-3">Professor</th>
-                                        <th class="border-0 text-muted fw-semibold py-3 text-center">Horário / Local
-                                        </th>
+                                        <th class="border-0 text-muted fw-semibold py-3 text-center">Horário</th>
                                         <th class="border-0 text-muted fw-semibold py-3 text-center">Vagas</th>
-                                        <th class="border-0 text-muted fw-semibold py-3">Status</th>
                                         <th class="border-0 text-muted fw-semibold text-center py-3 px-4">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr th:each="t : ${turmas}">
                                         <td class="px-4 py-3">
-                                            <div class="fw-bold" style="color: var(--text-main);">Turma 01 (T01)</div>
-                                            <small class="text-muted">DIM0611 - Estrutura de Dados II</small>
+                                            <div class="fw-bold" style="color: var(--text-main);"
+                                                th:text="${t.disciplina.codigo} + ' - ' + ${#numbers.formatInteger(t.numero, 2)}">
+                                                Turma 01 (T01)</div>
+                                            <small class="text-muted" th:text="${t.disciplina.nome}">DIM0611 - Estrutura
+                                                de Dados II</small>
                                         </td>
-                                        <td class="py-3 fw-medium text-muted">Prof. Dr. Arnaldo Silva</td>
+                                        <td class="py-3 fw-medium text-muted" th:text="${t.professor.nome}">Prof. Dr.
+                                            Arnaldo Silva</td>
                                         <td class="text-center py-3">
-                                            <div class="fw-medium" style="color: var(--text-main);">35M12</div>
-                                            <small class="text-muted">Sala 204 - Setor II</small>
+                                            <div class="fw-medium" style="color: var(--text-main);"
+                                                th:text="${t.horario}">35M12</div>
                                         </td>
-                                        <td class="text-center py-3 fw-bold" style="color: var(--text-main);">40</td>
-                                        <td class="py-3">
-                                            <span class="badge-soft-success d-inline-block">Aberta</span>
-                                        </td>
-                                        <td class="text-center py-3 px-4">
-                                            <div class="btn-group btn-group-sm gap-1">
-                                                <button class="btn btn-sm"
-                                                    style="background-color: var(--primary-light); color: var(--primary); border: none; border-radius: 6px;"
-                                                    title="Editar">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </button>
-                                                <button class="btn btn-sm"
-                                                    style="background-color: #fef2f2; color: #ef4444; border: none; border-radius: 6px;"
-                                                    title="Excluir">
-                                                    <i class="bi bi-trash3"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="px-4 py-3">
-                                            <div class="fw-bold" style="color: var(--text-main);">Turma 02 (T02)</div>
-                                            <small class="text-muted">DIM0510 - Processos de Software</small>
-                                        </td>
-                                        <td class="py-3 fw-medium text-muted">Profa. Dra. Maria Souza</td>
-                                        <td class="text-center py-3">
-                                            <div class="fw-medium" style="color: var(--text-main);">24T34</div>
-                                            <small class="text-muted">Lab 03 - IMD</small>
-                                        </td>
-                                        <td class="text-center py-3 fw-bold" style="color: var(--text-main);">30</td>
-                                        <td class="py-3">
-                                            <span class="badge-soft-success d-inline-block">Aberta</span>
-                                        </td>
+                                        <td class="text-center py-3 fw-bold" style="color: var(--text-main);"
+                                            th:text="${t.capacidade}">40</td>
                                         <td class="text-center py-3 px-4">
                                             <div class="btn-group btn-group-sm gap-1">
                                                 <button class="btn btn-sm"
@@ -277,31 +240,34 @@
                     <div class="modal-body px-4 py-4">
                         <form id="formNovoProfessor">
                             <div class="row g-3">
-
+                                <input type="hidden" id="idProfessorEdit" value="">
                                 <div class="col-md-8">
                                     <label class="form-label text-muted fw-semibold small mb-1">Nome Completo</label>
-                                    <input type="text" class="form-control" placeholder="Ex: Arnaldo Silva"
+                                    <input id="nomeProfessor" type="text" class="form-control"
+                                        placeholder="Ex: Arnaldo Silva"
                                         style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="form-label text-muted fw-semibold small mb-1">Matrícula
                                         (SIAPE)</label>
-                                    <input type="text" class="form-control" placeholder="Ex: 1452367"
+                                    <input id="siapeProfessor" type="text" class="form-control"
+                                        placeholder="Ex: 1452367"
                                         style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
                                 </div>
 
                                 <div class="col-md-7">
                                     <label class="form-label text-muted fw-semibold small mb-1">E-mail
                                         Institucional</label>
-                                    <input type="email" class="form-control" placeholder="nome@instituicao.edu.br"
+                                    <input id="emailProfessor" type="email" class="form-control"
+                                        placeholder="nome@instituicao.edu.br"
                                         style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
                                 </div>
 
                                 <div class="col-md-5">
                                     <label class="form-label text-muted fw-semibold small mb-1">Departamento de
                                         Vínculo</label>
-                                    <select class="form-select"
+                                    <select id="departamentoProfessor" class="form-select"
                                         style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
                                         <option selected disabled>Selecione o departamento...</option>
                                         <option value="DIM">Departamento de Informática e Matemática Aplicada (DIM)
@@ -312,7 +278,19 @@
                                     </select>
                                 </div>
 
+                                <div class="col-md-5">
+                                    <label class="form-label text-muted fw-semibold small mb-1">Titulação</label>
+                                    <select id="titulacaoProfessor" class="form-select"
+                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                        <option selected disabled>Selecione a titulação...</option>
+                                        <option value="GRADUADO">Graduado</option>
+                                        <option value="DOUTOR">Doutor</option>
+                                        <option value="MESTRE">Mestre</option>
+                                        <option value="ESPECIALISTA">Especialista</option>
+                                    </select>
+                                </div>
                             </div>
+
                         </form>
                     </div>
 
@@ -320,7 +298,7 @@
                         <button type="button" class="btn btn-outline-custom m-0 me-2" data-bs-dismiss="modal">
                             Cancelar
                         </button>
-                        <button type="submit" form="formNovoProfessor" class="btn btn-primary-custom m-0">
+                        <button type="button" id="btnSalvarProfessor" class="btn btn-primary-custom m-0">
                             <i class="bi bi-check2-circle me-1"></i> Salvar Professor
                         </button>
                     </div>
@@ -335,7 +313,6 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content border-0"
                     style="border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden;">
-
                     <div class="modal-header bg-white border-bottom-0 px-4 pt-4 pb-0">
                         <h5 class="modal-title fw-bold" id="modalNovaDisciplinaLabel" style="color: var(--primary);">
                             <i class="bi bi-book-half me-2"></i>Cadastrar Nova Disciplina
@@ -344,27 +321,33 @@
                             style="box-shadow: none;"></button>
                     </div>
 
+                    <div class="col-md-12 mt-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="primeiroNivelDisciplina"
+                                style="cursor: pointer;">
+                            <label class="form-check-label text-muted fw-semibold small" for="primeiroNivelDisciplina"
+                                style="cursor: pointer;">
+                                Esta é uma disciplina de 1º Nível (Não possui pré-requisitos)
+                            </label>
+                        </div>
+                    </div>
                     <div class="modal-body px-4 py-4">
                         <form id="formNovaDisciplina">
                             <div class="row g-3">
-
                                 <div class="col-md-4">
                                     <label class="form-label text-muted fw-semibold small mb-1">Código</label>
-                                    <input type="text" class="form-control" placeholder="Ex: DIM0611"
-                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                    <input type="text" id="codigoDisciplina" class="form-control"
+                                        placeholder="Ex: DIM0611">
                                 </div>
-
                                 <div class="col-md-8">
                                     <label class="form-label text-muted fw-semibold small mb-1">Nome da
                                         Disciplina</label>
-                                    <input type="text" class="form-control" placeholder="Ex: Estrutura de Dados II"
-                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                    <input type="text" id="nomeDisciplina" class="form-control"
+                                        placeholder="Ex: Estrutura de Dados II">
                                 </div>
-
                                 <div class="col-md-4">
                                     <label class="form-label text-muted fw-semibold small mb-1">Carga Horária</label>
-                                    <select class="form-select"
-                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                    <select id="chDisciplina" class="form-select">
                                         <option selected disabled>Selecione...</option>
                                         <option value="30">30h</option>
                                         <option value="60">60h</option>
@@ -372,20 +355,16 @@
                                         <option value="120">120h</option>
                                     </select>
                                 </div>
-
-                                <div class="col-md-8">
-                                    <label class="form-label text-muted fw-semibold small mb-1">Pré-requisito
-                                        (Opcional)</label>
-                                    <select class="form-select"
-                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
-                                        <option selected value="">Nenhum</option>
-                                        <option value="DIM0120">DIM0120 - Lógica de Programação</option>
-                                        <option value="DIM0121">DIM0121 - Estrutura de Dados I</option>
-                                        <option value="DIM0510">DIM0510 - Processos de Software</option>
-                                    </select>
-                                </div>
                             </div>
                         </form>
+                    </div>
+
+                    <div class="modal-footer bg-white border-top-0 px-4 pb-4 pt-0">
+                        <button type="button" class="btn btn-outline-custom m-0 me-2"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnSalvarDisciplina" class="btn btn-primary-custom m-0">
+                            <i class="bi bi-check2-circle me-1"></i> Salvar Disciplina
+                        </button>
                     </div>
                 </div>
             </div>
@@ -398,7 +377,6 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content border-0"
                     style="border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden;">
-
                     <div class="modal-header bg-white border-bottom-0 px-4 pt-4 pb-0">
                         <h5 class="modal-title fw-bold" id="modalNovaTurmaLabel" style="color: var(--primary);">
                             <i class="bi bi-diagram-3 me-2"></i>Cadastrar Nova Turma
@@ -410,78 +388,67 @@
                     <div class="modal-body px-4 py-4">
                         <form id="formNovaTurma">
                             <div class="row g-3">
-
                                 <div class="col-md-8">
                                     <label class="form-label text-muted fw-semibold small mb-1">Disciplina</label>
-                                    <select class="form-select"
-                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                    <select id="idDisciplinaTurma" class="form-select">
                                         <option selected disabled>Selecione a disciplina...</option>
-                                        <option value="DIM0611">DIM0611 - Estrutura de Dados II</option>
-                                        <option value="DIM0510">DIM0510 - Processos de Software</option>
-                                        <option value="DIM0120">DIM0120 - Lógica de Programação</option>
+                                        <option th:each="d : ${disciplinas}" th:value="${d.idDisciplina}"
+                                            th:text="${d.codigo} + ' - ' + ${d.nome}">
+                                            DIM0611 - Estrutura de Dados II
+                                        </option>
                                     </select>
                                 </div>
-
                                 <div class="col-md-4">
-                                    <label class="form-label text-muted fw-semibold small mb-1">Cód. da Turma</label>
-                                    <input type="text" class="form-control" placeholder="Ex: T01, Turma A"
-                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                    <label class="form-label text-muted fw-semibold small mb-1">Número da Turma</label>
+                                    <input type="number" id="numeroTurma" class="form-control" placeholder="Ex: 1">
                                 </div>
-
                                 <div class="col-md-8">
                                     <label class="form-label text-muted fw-semibold small mb-1">Professor
                                         Responsável</label>
-                                    <select class="form-select"
-                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                    <select id="idProfessorTurma" class="form-select">
                                         <option selected disabled>Selecione o professor...</option>
-                                        <option value="1">Prof. Dr. Arnaldo Silva</option>
-                                        <option value="2">Profa. Dra. Maria Souza</option>
-                                        <option value="3">Prof. Me. Carlos Mendes</option>
+                                        <option th:each="p : ${professores}" th:value="${p.idPessoa}"
+                                            th:text="${p.nome}">
+                                            Prof. Dr. Arnaldo Silva
+                                        </option>
                                     </select>
                                 </div>
-
                                 <div class="col-md-4">
                                     <label class="form-label text-muted fw-semibold small mb-1">Total de Vagas</label>
-                                    <input type="number" class="form-control" placeholder="Ex: 40" min="1"
-                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                    <input type="number" id="capacidadeTurma" class="form-control" placeholder="Ex: 40"
+                                        min="1">
                                 </div>
-
                                 <div class="col-md-6">
                                     <label class="form-label text-muted fw-semibold small mb-1">Horário (Padrão
                                         Institucional)</label>
-                                    <input type="text" class="form-control" placeholder="Ex: 35M12, 24T34"
-                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                    <input type="text" id="horarioTurma" class="form-control" placeholder="Ex: 35M12">
                                 </div>
-
-                                <div class="col-md-6">
-                                    <label class="form-label text-muted fw-semibold small mb-1">Local / Sala</label>
-                                    <input type="text" class="form-control" placeholder="Ex: Sala 204 - Setor II"
-                                        style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                <div class="col-md-3 mt-4">
+                                    <label class="form-label text-muted fw-semibold small mb-1">Ano</label>
+                                    <input type="number" id="anoTurma" class="form-control" value="2026">
                                 </div>
-
-                                <div class="col-md-4 mt-4">
-                                    <label class="form-label text-muted fw-semibold small mb-1">Semestre Letivo</label>
-                                    <input type="text" class="form-control" value="2026.1" readonly
-                                        style="background-color: var(--secondary); border-radius: 10px; border: 1px solid #e2e8f0; padding: 10px 15px; box-shadow: none;">
+                                <div class="col-md-3 mt-4">
+                                    <label class="form-label text-muted fw-semibold small mb-1">Semestre</label>
+                                    <input type="number" id="semestreTurma" class="form-control" value="1">
                                 </div>
-
                             </div>
                         </form>
                     </div>
 
                     <div class="modal-footer bg-white border-top-0 px-4 pb-4 pt-0">
-                        <button type="button" class="btn btn-outline-custom m-0 me-2" data-bs-dismiss="modal">
-                            Cancelar
-                        </button>
-                        <button type="submit" form="formNovaTurma" class="btn btn-primary-custom m-0">
+                        <button type="button" class="btn btn-outline-custom m-0 me-2"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnSalvarTurma" class="btn btn-primary-custom m-0">
                             <i class="bi bi-check2-circle me-1"></i> Criar Turma
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
 
+        <script th:src="@{/js/gestaoProfessores.js}"></script>
+        <script th:src="@{/js/gestaoDisciplina.js}"></script>
+        <script th:src="@{/js/gestaoTurma.js}"></script>
         <script>
             // Pequeno ajuste para mudar a cor das abas inativas ao clicar
             document.querySelectorAll('.nav-pills .nav-link').forEach(button => {

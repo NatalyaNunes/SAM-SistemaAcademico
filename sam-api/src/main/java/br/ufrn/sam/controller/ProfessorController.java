@@ -36,4 +36,10 @@ public class ProfessorController {
     public ResponseEntity<List<ProfessorModel>> listar() {
         return ResponseEntity.ok(professorService.listarTodos());
     }
+
+    @PutMapping("/{idPessoa}")
+    public ResponseEntity<ProfessorModel> atualizar(@PathVariable Integer idPessoa, @RequestBody ProfessorModel professorAtualizado) {
+        ProfessorModel salvo = professorService.atualizar(idPessoa, professorAtualizado);
+        return ResponseEntity.ok(salvo); 
+    }
 }
