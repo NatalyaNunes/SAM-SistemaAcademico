@@ -1,6 +1,7 @@
 package br.ufrn.sam.controller;
 
 import br.ufrn.sam.model.InteresseModel;
+import br.ufrn.sam.model.DisciplinaDemandaDTO; // Importação necessária do DTO
 import br.ufrn.sam.service.InteresseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,13 @@ public class InteresseController {
 
     public InteresseController(InteresseService interesseService) {
         this.interesseService = interesseService;
+    }
+
+    // GET /api/interesses/demanda-disciplinas → retorna os dados
+    // agregados para o gráfico
+    @GetMapping("/demanda-disciplinas")
+    public ResponseEntity<List<DisciplinaDemandaDTO>> listarDemandaDisciplinas() {
+        return ResponseEntity.ok(interesseService.listarDisciplinasMaisProcuradas());
     }
 
     // POST /api/interesses/{matricula}/{idTurma} → registra interesse

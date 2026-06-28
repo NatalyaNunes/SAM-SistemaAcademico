@@ -3,7 +3,8 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 border-0">
             <div>
                 <h3 class="fw-bold" style="color: var(--text-main);">Painel de Retenção e Demanda</h3>
-                <p class="mb-0" style="color: var(--text-muted);">Visão geral da demanda de turmas e disciplinas ociosas.</p>
+                <p class="mb-0" style="color: var(--text-muted);">Visão geral da demanda de turmas e disciplinas
+                    ociosas.</p>
             </div>
         </div>
 
@@ -36,6 +37,19 @@
             </div>
         </div>
 
+        <div class="card border-0 mb-4">
+            <div class="card-header border-0 pb-3 pt-4 px-4 border-bottom">
+                <h5 class="fw-bold mb-0" style="color: var(--text-main);">Disciplinas Mais Procuradas</h5>
+                <small class="text-muted">Utilize a métrica para priorizar a alocação em salas com maior capacidade
+                    física.</small>
+            </div>
+            <div class="card-body px-4 py-3">
+                <div style="height: 320px; position: relative;">
+                    <canvas id="graficoDemandaSalas"></canvas>
+                </div>
+            </div>
+        </div>
+
         <div class="card border-0">
             <div class="card-header border-0 pb-3 pt-4 px-4 border-bottom">
                 <h5 class="fw-bold mb-0" style="color: var(--text-main);">Fila de Espera por Componente Curricular</h5>
@@ -55,29 +69,77 @@
                         <tbody>
                             <tr>
                                 <td class="px-4 py-3 fw-bold align-middle" style="color: var(--text-main);">DIM0510</td>
-                                <td class="py-3 align-middle fw-medium" style="color: var(--text-muted);">Processos de Software</td>
+                                <td class="py-3 align-middle fw-medium" style="color: var(--text-muted);">Processos de
+                                    Software</td>
                                 <td class="py-3 align-middle text-center" style="color: var(--text-main);">40</td>
                                 <td class="py-3 align-middle text-center text-danger fw-bold">65</td>
-                                <td class="py-3 align-middle text-center fw-bold" style="color: var(--text-main);">+25</td>
+                                <td class="py-3 align-middle text-center fw-bold" style="color: var(--text-main);">+25
+                                </td>
                             </tr>
                             <tr>
                                 <td class="px-4 py-3 fw-bold align-middle" style="color: var(--text-main);">DIM0120</td>
-                                <td class="py-3 align-middle fw-medium" style="color: var(--text-muted);">Banco de Dados I</td>
+                                <td class="py-3 align-middle fw-medium" style="color: var(--text-muted);">Banco de Dados
+                                    I</td>
                                 <td class="py-3 align-middle text-center" style="color: var(--text-main);">50</td>
                                 <td class="py-3 align-middle text-center text-danger fw-bold">82</td>
-                                <td class="py-3 align-middle text-center fw-bold" style="color: var(--text-main);">+32</td>
+                                <td class="py-3 align-middle text-center fw-bold" style="color: var(--text-main);">+32
+                                </td>
                             </tr>
                             <tr>
                                 <td class="px-4 py-3 fw-bold align-middle" style="color: var(--text-main);">DIM0001</td>
-                                <td class="py-3 align-middle fw-medium" style="color: var(--text-muted);">Introdução à Programação</td>
+                                <td class="py-3 align-middle fw-medium" style="color: var(--text-muted);">Introdução à
+                                    Programação</td>
                                 <td class="py-3 align-middle text-center" style="color: var(--text-main);">90</td>
                                 <td class="py-3 align-middle text-center text-warning fw-bold">100</td>
-                                <td class="py-3 align-middle text-center fw-bold" style="color: var(--text-main);">+10</td>
+                                <td class="py-3 align-middle text-center fw-bold" style="color: var(--text-main);">+10
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                fetch('/api/interesses/demanda-disciplinas')
+                    .then(response => {
+                        if (!response.ok) throw new Error("Erro ao buscar dados");
+                        return response.json();
+                    })
+                    .then(data => {
+                        const labels = data.map(item => `${item.codigo} - ${item.nome}`);
+                        const valores = data.map(item => item.quantidadeInteressados);
+
+                        const ctx = document.getElementById('graficoDemandaSalas').getContext('2d');
+                        new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Nº de Alunos Interessados',
+                                    data: valores,
+                                    backgroundColor: '#3b82f6',
+                                    borderColor: '#1d4ed8',
+                                    borderWidth: 1,
+                                    borderRadius: 4
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                scales: {
+                                    y: { beginAtZero: true, ticks: { stepSize: 1 } },
+                                    x: { ticks: { maxRotation: 15, minRotation: 0 } }
+                                },
+                                plugins: { legend: { display: false } }
+                            }
+                        });
+                    })
+                    .catch(err => console.error("Erro:", err));
+            });
+
+        </script>
     </section>
 </div>
